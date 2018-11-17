@@ -1,0 +1,1256 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body{margin-left:0;margin-right:0;margin-top:0}#bN015htcoyT__google-cache-hdr{background:#f5f5f5;font:13px arial,sans-serif;text-align:left;color:#202020;border:0;margin:0;border-bottom:1px solid #cecece;line-height:16px;padding:16px 28px 24px 28px}#bN015htcoyT__google-cache-hdr *{display:inline;font:inherit;text-align:inherit;color:inherit;line-height:inherit;background:none;border:0;margin:0;padding:0;letter-spacing:0}#bN015htcoyT__google-cache-hdr a{text-decoration:none;color:#1a0dab}#bN015htcoyT__google-cache-hdr a:hover{text-decoration:underline}#bN015htcoyT__google-cache-hdr a:visited{color:#609}#bN015htcoyT__google-cache-hdr div{display:block;margin-top:4px}#bN015htcoyT__google-cache-hdr b{font-weight:bold;display:inline-block;direction:ltr}</style></head><body vlink="blue" link="blue" bgcolor="#ffffff"><div id="bN015htcoyT__google-cache-hdr"><div><span>This is the html version of the file <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.456.5248&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.456.5248&amp;rep=rep1&amp;type=pdf</a>. Google automatically generates html versions of documents as we crawl the web.</span></div><span style="display:inline-block;margin-top:8px;color:#717171"><span>Tip: To quickly find your search term on this page, press <b>Ctrl+F</b> or <b>⌘-F</b> (Mac) and use the find bar.</span></span></div><div style="position:relative;">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="ModDate" content="D:20040930152532-06'00'">
+<meta name="CreationDate" content="D:20040930152532-06'00'">
+<meta name="Title" content="Microsoft Word - ION04_footer_Bo zheng.doc">
+<meta name="Creator" content="PScript5.dll Version 5.2.2">
+<meta name="Producer" content="Acrobat Distiller 6.0 (Windows)">
+<meta name="Author" content="Changlin Ma">
+<title>Acquisition Schemes for a GPS  L5 Software Receiver</title>
+
+<table width="100%" border="0"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="1"><b>Page 1</b></a></font></td></tr></tbody></table><font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:1318;left:79"><nobr><i>Proceedings of ION GNSS 2004 (Session A3), Long Beach, CA, September 21-24, 2004</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:1319;left:805"><nobr>1</nobr></div>
+</span></font>
+<font size="5" face="Times"><span style="font-size:33px;font-family:Times">
+<div style="position:absolute;top:342;left:214"><nobr><b>Acquisition Schemes for a GPS </b></nobr></div>
+<div style="position:absolute;top:383;left:285"><nobr><b>L5 Software Receiver</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:458;left:349"><nobr>Bo Zheng and Gérard Lachapelle </nobr></div>
+<div style="position:absolute;top:475;left:300"><nobr><i>Position, Location and Navigation (PLAN) Group</i></nobr></div>
+<div style="position:absolute;top:491;left:333"><nobr><i>Department of Geomatics Engineering</i></nobr></div>
+<div style="position:absolute;top:508;left:383"><nobr><i>University of Calgary</i></nobr></div>
+<div style="position:absolute;top:575;left:79"><nobr><b>BIOGRAPHIES  </b></nobr></div>
+<div style="position:absolute;top:609;left:79"><nobr>Bo Zheng is a Ph.D. student in Geomatics Engineering at</nobr></div>
+<div style="position:absolute;top:626;left:79"><nobr>the University of Calgary. He received his B.S. (1996) in</nobr></div>
+<div style="position:absolute;top:642;left:79"><nobr>Electronics Engineering at Northwestern Polytechnical</nobr></div>
+<div style="position:absolute;top:659;left:79"><nobr>University, China, and his M.S. (1999) in Electronics</nobr></div>
+<div style="position:absolute;top:676;left:79"><nobr>Engineering from the Chinese Academy of Space</nobr></div>
+<div style="position:absolute;top:693;left:79"><nobr>Technology. His current research interests are GPS</nobr></div>
+<div style="position:absolute;top:710;left:79"><nobr>receiver software technology and GPS signal simulation.   </nobr></div>
+<div style="position:absolute;top:743;left:79"><nobr>Dr. Gérard Lachapelle holds a CRC/iCORE chair in</nobr></div>
+<div style="position:absolute;top:760;left:79"><nobr>Wireless Location. He has been involved with GPS</nobr></div>
+<div style="position:absolute;top:777;left:79"><nobr>developments and applications since 1980 and has</nobr></div>
+<div style="position:absolute;top:793;left:79"><nobr>authored/co-authored numerous related publications and</nobr></div>
+<div style="position:absolute;top:810;left:79"><nobr>software. More information is available on</nobr></div>
+</span></font>
+<font size="3" face="Times" color="#0000ff"><span style="font-size:12px;font-family:Times;color:#0000ff">
+<div style="position:absolute;top:827;left:79"><nobr>http://plan.geomatics.ucalgary.ca</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:861;left:79"><nobr><b>ABSTRACT </b></nobr></div>
+<div style="position:absolute;top:894;left:79"><nobr>This paper investigates cold start acquisition schemes for</nobr></div>
+<div style="position:absolute;top:911;left:79"><nobr>a GPS L5 software receiver. Since the chipping rate of L5</nobr></div>
+<div style="position:absolute;top:927;left:79"><nobr>PRN code is 10.23 MHz, which is 10 times that of the L1</nobr></div>
+<div style="position:absolute;top:944;left:79"><nobr>C/A-code, one major concern for the software signal</nobr></div>
+<div style="position:absolute;top:961;left:79"><nobr>processing is the computation load. The proposed</nobr></div>
+<div style="position:absolute;top:978;left:79"><nobr>algorithm should have a reasonable computation burden</nobr></div>
+<div style="position:absolute;top:995;left:79"><nobr>in order to be implemented into a software receiver.</nobr></div>
+<div style="position:absolute;top:1028;left:79"><nobr>In particular, two new methods are proposed. The main</nobr></div>
+<div style="position:absolute;top:1045;left:79"><nobr>idea of the first approach is to eliminate the frequency</nobr></div>
+<div style="position:absolute;top:1062;left:79"><nobr>information of the incoming signal, thus only one</nobr></div>
+<div style="position:absolute;top:1079;left:79"><nobr>dimension search of the initial point of the PRN code is</nobr></div>
+<div style="position:absolute;top:1095;left:79"><nobr>required in the first step. The acquisition of the Doppler</nobr></div>
+<div style="position:absolute;top:1112;left:79"><nobr>frequency and NH code can be easily fulfilled after the</nobr></div>
+<div style="position:absolute;top:1129;left:79"><nobr>detection of the chip offset. When the signal strength is</nobr></div>
+<div style="position:absolute;top:1146;left:79"><nobr>normal or above, the computation burden of this method</nobr></div>
+<div style="position:absolute;top:1162;left:79"><nobr>is very low, which makes it well suited for a software</nobr></div>
+<div style="position:absolute;top:1179;left:79"><nobr>signal acquisition. The second approach can detect the L5</nobr></div>
+<div style="position:absolute;top:1196;left:79"><nobr>signal in a very low signal-to-noise ratio, such as indoors.</nobr></div>
+<div style="position:absolute;top:1213;left:79"><nobr>Longer coherent integration is expected using Q5</nobr></div>
+<div style="position:absolute;top:1229;left:79"><nobr>correlator outputs for a higher correlation gain. A</nobr></div>
+<div style="position:absolute;top:1246;left:79"><nobr>combined L5 codes and Neumann Hoffman (NH) codes</nobr></div>
+<div style="position:absolute;top:1263;left:79"><nobr>acquisition algorithm is proposed by Hegarty et al. [2003]</nobr></div>
+<div style="position:absolute;top:575;left:473"><nobr>using very long coherent integration times (i.e. 20 ms or</nobr></div>
+<div style="position:absolute;top:592;left:473"><nobr>longer) on dataless channel. However, this method is not</nobr></div>
+<div style="position:absolute;top:609;left:473"><nobr>practical for software signal processing due to its heavy</nobr></div>
+<div style="position:absolute;top:626;left:473"><nobr>computation load. A shortened fast Fourier transform</nobr></div>
+<div style="position:absolute;top:642;left:473"><nobr>(FFT) version of the above method, which is suitable for</nobr></div>
+<div style="position:absolute;top:659;left:473"><nobr>the software receiver, can greatly reduce the computation</nobr></div>
+<div style="position:absolute;top:676;left:473"><nobr>burden without degradation on performance. In case of a</nobr></div>
+<div style="position:absolute;top:693;left:473"><nobr>weak signal, the coherent integration time can be</nobr></div>
+<div style="position:absolute;top:710;left:473"><nobr>extended for a very long period to get enough correlation</nobr></div>
+<div style="position:absolute;top:726;left:473"><nobr>gain. The only limitation is the quality of the receiver’s</nobr></div>
+<div style="position:absolute;top:743;left:473"><nobr>oscillator.    </nobr></div>
+<div style="position:absolute;top:777;left:473"><nobr><b>INTRODUCTION </b></nobr></div>
+<div style="position:absolute;top:810;left:473"><nobr>This paper presents two new cold acquisition approaches</nobr></div>
+<div style="position:absolute;top:827;left:473"><nobr>suitable for a GPS L5 software receiver. The first method</nobr></div>
+<div style="position:absolute;top:844;left:473"><nobr>(Frequency Removal method) multiplies the received</nobr></div>
+<div style="position:absolute;top:860;left:473"><nobr>Intermediate Frequency (IF) samples with its slightly</nobr></div>
+<div style="position:absolute;top:877;left:473"><nobr>delayed version.  The outcome of this multiplication is a</nobr></div>
+<div style="position:absolute;top:894;left:473"><nobr>“new code” modulated on two carrier components: a dc</nobr></div>
+<div style="position:absolute;top:911;left:473"><nobr>term and a high frequency term. The “new code” is the</nobr></div>
+<div style="position:absolute;top:927;left:473"><nobr>product of a PRN code and its delayed version.</nobr></div>
+<div style="position:absolute;top:944;left:473"><nobr>Simulations show that the autocorrelation of this “new</nobr></div>
+<div style="position:absolute;top:961;left:473"><nobr>code” can be used to find its initial point, which is the</nobr></div>
+<div style="position:absolute;top:978;left:473"><nobr>same as that of the PRN code. The high frequency term of</nobr></div>
+<div style="position:absolute;top:995;left:473"><nobr>the modulated carrier can be easily filtered out using a</nobr></div>
+<div style="position:absolute;top:1011;left:473"><nobr>pre-detection filter (accumulate and dump). The delay of</nobr></div>
+<div style="position:absolute;top:1028;left:473"><nobr>the IF samples must be carefully chosen in order to make</nobr></div>
+<div style="position:absolute;top:1045;left:473"><nobr>the dc term close to one. An advantage of this algorithm is</nobr></div>
+<div style="position:absolute;top:1062;left:473"><nobr>that the NH code and data modulations can be mostly</nobr></div>
+<div style="position:absolute;top:1079;left:473"><nobr>removed by multiplication. As a result, longer coherent</nobr></div>
+<div style="position:absolute;top:1095;left:473"><nobr>integration can be achieved. This method can apply</nobr></div>
+<div style="position:absolute;top:1112;left:473"><nobr>correlation with the data (I5) and/or dataless (Q5)</nobr></div>
+<div style="position:absolute;top:1129;left:473"><nobr>components of the incoming L5 signal. It is found that the</nobr></div>
+<div style="position:absolute;top:1146;left:473"><nobr>correlation with the Q5 channel slightly outperforms that</nobr></div>
+<div style="position:absolute;top:1162;left:473"><nobr>with the I5 channel, which will be discussed later in the</nobr></div>
+<div style="position:absolute;top:1179;left:473"><nobr>paper. </nobr></div>
+<div style="position:absolute;top:1213;left:473"><nobr>The second algorithm (NH Removal method) searches</nobr></div>
+<div style="position:absolute;top:1229;left:473"><nobr>three unknowns - code delay, Doppler frequency, NH</nobr></div>
+<div style="position:absolute;top:1246;left:473"><nobr>code initial point - on the dataless channel. The start point</nobr></div>
+<div style="position:absolute;top:1263;left:473"><nobr>of the following tracking process can be found by the </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:1438;left:0"><hr><table width="100%" border="0"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="2"><b>Page 2</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:2581;left:79"><nobr><i>Proceedings of ION GNSS 2004 (Session A3), Long Beach, CA, September 21-24, 2004</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:2582;left:805"><nobr>2</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:1574;left:79"><nobr>detection of the highest correlation peak above the</nobr></div>
+<div style="position:absolute;top:1591;left:79"><nobr>threshold. It is a shortened FFT version of an acquisition</nobr></div>
+<div style="position:absolute;top:1607;left:79"><nobr>algorithm proposed by Hegarty et al. [2003], which is</nobr></div>
+<div style="position:absolute;top:1624;left:79"><nobr>suitable for weak signal acquisition. When a software</nobr></div>
+<div style="position:absolute;top:1641;left:79"><nobr>receiver is adopted to implement Hegarty’s algorithm,</nobr></div>
+<div style="position:absolute;top:1658;left:79"><nobr>where the FFT method is normally used to compute the</nobr></div>
+<div style="position:absolute;top:1674;left:79"><nobr>correlation values, the computation load is so heavy that it</nobr></div>
+<div style="position:absolute;top:1691;left:79"><nobr>makes it impractical. The second acquisition algorithm</nobr></div>
+<div style="position:absolute;top:1708;left:79"><nobr>proposed here can greatly reduce the computation load</nobr></div>
+<div style="position:absolute;top:1725;left:79"><nobr>and is suitable for software signal processing. In the case</nobr></div>
+<div style="position:absolute;top:1742;left:79"><nobr>when a 20 ms coherent integration time is implemented,</nobr></div>
+<div style="position:absolute;top:1758;left:79"><nobr>assuming a sampling rate of 42.16 MHz (42,160 points</nobr></div>
+<div style="position:absolute;top:1775;left:79"><nobr>FFT for 1 ms), instead of carrying out twenty 42,160-</nobr></div>
+<div style="position:absolute;top:1792;left:79"><nobr>point FFT, only one 42,160-point FFT has to be</nobr></div>
+<div style="position:absolute;top:1809;left:79"><nobr>performed. When longer coherent integration (i.e. &gt; 20</nobr></div>
+<div style="position:absolute;top:1825;left:79"><nobr>ms) is performed to get a higher correlation gain, the</nobr></div>
+<div style="position:absolute;top:1842;left:79"><nobr>computation load may be reduced further depending on</nobr></div>
+<div style="position:absolute;top:1859;left:79"><nobr>the line-of-sight dynamics and the quality of the</nobr></div>
+<div style="position:absolute;top:1876;left:79"><nobr>receiver’s oscillator.</nobr></div>
+<div style="position:absolute;top:1909;left:79"><nobr>The performance comparison of the algorithms mentioned</nobr></div>
+<div style="position:absolute;top:1926;left:79"><nobr>above, as well as the non-coherent integration scheme, is</nobr></div>
+<div style="position:absolute;top:1943;left:79"><nobr>described in the third part. Finally, this paper concludes</nobr></div>
+<div style="position:absolute;top:1960;left:79"><nobr>with a short summary.    </nobr></div>
+<div style="position:absolute;top:1993;left:79"><nobr><b>SCHEME 1 - FREQUENCY REMOVAL (FR)</b></nobr></div>
+<div style="position:absolute;top:2027;left:79"><nobr>This method multiplies the incoming signal with its</nobr></div>
+<div style="position:absolute;top:2044;left:79"><nobr>slightly delayed version to generate a new PRN code. The</nobr></div>
+<div style="position:absolute;top:2060;left:79"><nobr>code delay of this new code is found to be the same as</nobr></div>
+<div style="position:absolute;top:2077;left:79"><nobr>that of the Q5 PRN code that can be used to find the</nobr></div>
+<div style="position:absolute;top:2094;left:79"><nobr>initial phase of the incoming Q5 code. The modulated</nobr></div>
+<div style="position:absolute;top:2111;left:79"><nobr>carrier and NH codes can be mostly eliminated by</nobr></div>
+<div style="position:absolute;top:2127;left:79"><nobr>multiplication and further filtering. Only one dimension</nobr></div>
+<div style="position:absolute;top:2144;left:79"><nobr>search of the code delay has to be performed at the first</nobr></div>
+<div style="position:absolute;top:2161;left:79"><nobr>step, which makes this method very fast. Once the initial</nobr></div>
+<div style="position:absolute;top:2178;left:79"><nobr>phase of the Q5 code is found, the Doppler frequency and</nobr></div>
+<div style="position:absolute;top:2194;left:79"><nobr>NH code acquisition can be easily fulfilled. Previous</nobr></div>
+<div style="position:absolute;top:2211;left:79"><nobr>implementation of this method on L1 C/A-code</nobr></div>
+<div style="position:absolute;top:2228;left:79"><nobr>acquisition can be found in [Tsui, 2000] and [Lin &amp; Tsui,</nobr></div>
+<div style="position:absolute;top:2245;left:79"><nobr>2000].</nobr></div>
+<div style="position:absolute;top:2279;left:79"><nobr><b>Theory</b></nobr></div>
+<div style="position:absolute;top:2312;left:79"><nobr>The received IF signal can be expressed as:</nobr></div>
+<div style="position:absolute;top:2397;left:79"><nobr>where</nobr></div>
+<div style="position:absolute;top:2413;left:131"><nobr>P</nobr></div>
+<div style="position:absolute;top:2413;left:184"><nobr>total signal power</nobr></div>
+<div style="position:absolute;top:2430;left:131"><nobr>d</nobr></div>
+<div style="position:absolute;top:2430;left:184"><nobr>navigation data message</nobr></div>
+<div style="position:absolute;top:2447;left:131"><nobr>NH<font style="font-size:7px">10</font></nobr></div>
+<div style="position:absolute;top:2447;left:184"><nobr>10 bits NH code on data channel</nobr></div>
+<div style="position:absolute;top:2464;left:131"><nobr>NH<font style="font-size:7px">20</font></nobr></div>
+<div style="position:absolute;top:2464;left:184"><nobr>20 bits NH code on dataless channel</nobr></div>
+<div style="position:absolute;top:2481;left:131"><nobr>C<font style="font-size:7px">I</font></nobr></div>
+<div style="position:absolute;top:2481;left:184"><nobr>in-phase PRN code</nobr></div>
+<div style="position:absolute;top:2497;left:131"><nobr>C<font style="font-size:7px">Q</font></nobr></div>
+<div style="position:absolute;top:2497;left:184"><nobr>quadrature-phase PRN code</nobr></div>
+<div style="position:absolute;top:2514;left:131"><nobr>f<font style="font-size:7px">IF</font></nobr></div>
+<div style="position:absolute;top:2514;left:184"><nobr>intermediate frequency</nobr></div>
+<div style="position:absolute;top:1574;left:473"><nobr>The code delay and carrier phase shift are ignored in</nobr></div>
+<div style="position:absolute;top:1591;left:473"><nobr>equation (1) to simplify the signal representation. The</nobr></div>
+<div style="position:absolute;top:1607;left:473"><nobr>slightly shifted version of the incoming IF signal is</nobr></div>
+<div style="position:absolute;top:1624;left:473"><nobr>represented as:</nobr></div>
+<div style="position:absolute;top:1724;left:473"><nobr>where</nobr></div>
+<div style="position:absolute;top:1737;left:525"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1742;left:578"><nobr>sample delay</nobr></div>
+<div style="position:absolute;top:1776;left:473"><nobr>The product of the incoming IF signal and its delayed</nobr></div>
+<div style="position:absolute;top:1792;left:473"><nobr>version can be expressed in four parts:</nobr></div>
+<div style="position:absolute;top:2134;left:473"><nobr>In item3, a new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-τ) is found to be</nobr></div>
+<div style="position:absolute;top:2152;left:473"><nobr>uncorrelated with the other three new codes C<font style="font-size:7px">I</font>(t)*C<font style="font-size:7px">Q</font>(t-τ),</nobr></div>
+<div style="position:absolute;top:2169;left:473"><nobr>C<font style="font-size:7px">I</font>(t-τ)*C<font style="font-size:7px">Q</font>(t) and C<font style="font-size:7px">I</font>(t)*C<font style="font-size:7px">I</font>(t-τ) in item1, 2, 4 respectively.</nobr></div>
+<div style="position:absolute;top:2186;left:473"><nobr>The product of the 20-bit NH code and its delayed version</nobr></div>
+<div style="position:absolute;top:2203;left:473"><nobr>is mostly “1”. So, the NH modulation can be mostly</nobr></div>
+<div style="position:absolute;top:2221;left:473"><nobr>removed. The sample delay τ will be carefully chosen to</nobr></div>
+<div style="position:absolute;top:2239;left:473"><nobr>make the first carrier term cos(2πf<font style="font-size:7px">IF</font>τ) close to 1. The</nobr></div>
+<div style="position:absolute;top:2257;left:473"><nobr>second carrier term cos(2πf<font style="font-size:7px">IF</font>(2t-τ)) can be easily filtered</nobr></div>
+<div style="position:absolute;top:2273;left:473"><nobr>out by the pre-detection filter (accumulate and dump).</nobr></div>
+<div style="position:absolute;top:2290;left:473"><nobr>Because the new code has the same code delay as that of</nobr></div>
+<div style="position:absolute;top:2307;left:473"><nobr>the Q5 PRN code, item3 can be used to find the chip</nobr></div>
+<div style="position:absolute;top:2324;left:473"><nobr>offset of the incoming Q5 code. After the detection of the</nobr></div>
+<div style="position:absolute;top:2340;left:473"><nobr>code delay, the Doppler frequency and NH code initial</nobr></div>
+<div style="position:absolute;top:2357;left:473"><nobr>point can be found quickly by multiplication and</nobr></div>
+<div style="position:absolute;top:2374;left:473"><nobr>summation. </nobr></div>
+<div style="position:absolute;top:2408;left:473"><nobr><b>New Code Characters</b></nobr></div>
+<div style="position:absolute;top:2441;left:473"><nobr>Simulation results are shown in Figure 1 to Figure 5 to</nobr></div>
+<div style="position:absolute;top:2459;left:473"><nobr>demonstrate that the new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-τ) is</nobr></div>
+<div style="position:absolute;top:2476;left:473"><nobr>uncorrelated with other three new codes. Also shown is</nobr></div>
+<div style="position:absolute;top:2494;left:473"><nobr>that the new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-τ) has the same code delay</nobr></div>
+<div style="position:absolute;top:2510;left:473"><nobr>as that of the GPS Q5 code. All these figures are at same</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size:20px;font-family:Times">
+<div style="position:absolute;top:2331;left:105"><nobr>( )</nobr></div>
+<div style="position:absolute;top:2331;left:184"><nobr>( )</nobr></div>
+<div style="position:absolute;top:2331;left:248"><nobr>( ) ( )</nobr></div>
+<div style="position:absolute;top:2331;left:340"><nobr>(</nobr></div>
+<div style="position:absolute;top:2331;left:387"><nobr>)</nobr></div>
+<div style="position:absolute;top:2361;left:203"><nobr>( )</nobr></div>
+<div style="position:absolute;top:2361;left:250"><nobr>( ) (</nobr></div>
+<div style="position:absolute;top:2361;left:343"><nobr>)</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:2372;left:389"><nobr>(1) </nobr></div>
+<div style="position:absolute;top:2372;left:275"><nobr>2sin</nobr></div>
+<div style="position:absolute;top:2342;left:317"><nobr>2cos</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:2381;left:190"><nobr>20</nobr></div>
+<div style="position:absolute;top:2351;left:235"><nobr>10</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:2372;left:318"><nobr><i>tf</i></nobr></div>
+<div style="position:absolute;top:2372;left:208"><nobr><i>tCt</i></nobr></div>
+<div style="position:absolute;top:2372;left:164"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:2372;left:141"><nobr><i>P</i></nobr></div>
+<div style="position:absolute;top:2342;left:363"><nobr><i>tf</i></nobr></div>
+<div style="position:absolute;top:2342;left:252"><nobr><i>tCt</i></nobr></div>
+<div style="position:absolute;top:2342;left:151"><nobr><i>NHtdP</i></nobr></div>
+<div style="position:absolute;top:2342;left:82"><nobr><i>tS</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:2381;left:325"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:2381;left:240"><nobr><i>Q</i></nobr></div>
+<div style="position:absolute;top:2351;left:369"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:2351;left:285"><nobr><i>I</i></nobr></div>
+<div style="position:absolute;top:2351;left:92"><nobr><i>IF</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:16px;font-family:Times">
+<div style="position:absolute;top:2365;left:309"><nobr>π</nobr></div>
+<div style="position:absolute;top:2335;left:353"><nobr>π</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:2366;left:268"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2366;left:221"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2366;left:156"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2336;left:395"><nobr>+</nobr></div>
+<div style="position:absolute;top:2336;left:310"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2336;left:266"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2336;left:202"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2336;left:166"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2336;left:125"><nobr>=</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:18px;font-family:Times">
+<div style="position:absolute;top:1647;left:493"><nobr>( )</nobr></div>
+<div style="position:absolute;top:1647;left:571"><nobr>( )</nobr></div>
+<div style="position:absolute;top:1647;left:638"><nobr>( ) ( ) (</nobr></div>
+<div style="position:absolute;top:1647;left:809"><nobr>)</nobr></div>
+<div style="position:absolute;top:1674;left:586"><nobr>( ) ( ) (</nobr></div>
+<div style="position:absolute;top:1674;left:758"><nobr>)</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1684;left:794"><nobr>(2)  </nobr></div>
+<div style="position:absolute;top:1684;left:726"><nobr>)(</nobr></div>
+<div style="position:absolute;top:1684;left:677"><nobr>2sin</nobr></div>
+<div style="position:absolute;top:1657;left:777"><nobr>)(</nobr></div>
+<div style="position:absolute;top:1657;left:727"><nobr>2cos</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:1693;left:577"><nobr>20</nobr></div>
+<div style="position:absolute;top:1665;left:628"><nobr>10</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:1678;left:745"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1678;left:703"><nobr>π</nobr></div>
+<div style="position:absolute;top:1678;left:659"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1678;left:605"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1651;left:796"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1651;left:754"><nobr>π</nobr></div>
+<div style="position:absolute;top:1651;left:708"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1651;left:656"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1651;left:589"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1651;left:512"><nobr>τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1679;left:737"><nobr>−</nobr></div>
+<div style="position:absolute;top:1679;left:672"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1679;left:651"><nobr>−</nobr></div>
+<div style="position:absolute;top:1679;left:618"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1679;left:597"><nobr>−</nobr></div>
+<div style="position:absolute;top:1679;left:550"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1652;left:815"><nobr>+</nobr></div>
+<div style="position:absolute;top:1652;left:788"><nobr>−</nobr></div>
+<div style="position:absolute;top:1652;left:722"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1652;left:700"><nobr>−</nobr></div>
+<div style="position:absolute;top:1652;left:670"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1652;left:648"><nobr>−</nobr></div>
+<div style="position:absolute;top:1652;left:603"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1652;left:581"><nobr>−</nobr></div>
+<div style="position:absolute;top:1652;left:558"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1652;left:527"><nobr>=</nobr></div>
+<div style="position:absolute;top:1652;left:504"><nobr>−</nobr></div>
+<div style="position:absolute;top:1684;left:710"><nobr><i>tf</i></nobr></div>
+<div style="position:absolute;top:1684;left:623"><nobr><i>tC</i></nobr></div>
+<div style="position:absolute;top:1684;left:590"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1684;left:539"><nobr><i>NHP</i></nobr></div>
+<div style="position:absolute;top:1657;left:761"><nobr><i>tf</i></nobr></div>
+<div style="position:absolute;top:1657;left:674"><nobr><i>tC</i></nobr></div>
+<div style="position:absolute;top:1657;left:641"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1657;left:608"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:1657;left:547"><nobr><i>tdP</i></nobr></div>
+<div style="position:absolute;top:1657;left:475"><nobr><i>tS</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:1693;left:716"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1693;left:632"><nobr><i>Q</i></nobr></div>
+<div style="position:absolute;top:1665;left:767"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1665;left:684"><nobr><i>I</i></nobr></div>
+<div style="position:absolute;top:1665;left:483"><nobr><i>IF</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:17px;font-family:Times">
+<div style="position:absolute;top:1814;left:496"><nobr>( )</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:1823;left:807"><nobr>(3)</nobr></div>
+<div style="position:absolute;top:1823;left:770"><nobr>4</nobr></div>
+<div style="position:absolute;top:1823;left:721"><nobr>3</nobr></div>
+<div style="position:absolute;top:1823;left:672"><nobr>2</nobr></div>
+<div style="position:absolute;top:1823;left:624"><nobr>1</nobr></div>
+<div style="position:absolute;top:1823;left:577"><nobr>)</nobr></div>
+<div style="position:absolute;top:1823;left:545"><nobr>(</nobr></div>
+<div style="position:absolute;top:1823;left:742"><nobr><i>item</i></nobr></div>
+<div style="position:absolute;top:1823;left:694"><nobr><i>item</i></nobr></div>
+<div style="position:absolute;top:1823;left:645"><nobr><i>item</i></nobr></div>
+<div style="position:absolute;top:1823;left:599"><nobr><i>item</i></nobr></div>
+<div style="position:absolute;top:1823;left:475"><nobr><i>tStS</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:6px;font-family:Times">
+<div style="position:absolute;top:1831;left:533"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1831;left:484"><nobr><i>IF</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:1819;left:731"><nobr>+</nobr></div>
+<div style="position:absolute;top:1819;left:683"><nobr>+</nobr></div>
+<div style="position:absolute;top:1819;left:633"><nobr>+</nobr></div>
+<div style="position:absolute;top:1819;left:586"><nobr>=</nobr></div>
+<div style="position:absolute;top:1819;left:558"><nobr>−</nobr></div>
+<div style="position:absolute;top:1819;left:512"><nobr>×</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1818;left:568"><nobr>τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:19px;font-family:Times">
+<div style="position:absolute;top:1884;left:551"><nobr>(</nobr></div>
+<div style="position:absolute;top:1884;left:640"><nobr>)</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size:20px;font-family:Times">
+<div style="position:absolute;top:1884;left:527"><nobr>[</nobr></div>
+<div style="position:absolute;top:1884;left:731"><nobr>]<font style="font-size:14px">)</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:1895;left:659"><nobr>2sin(</nobr></div>
+<div style="position:absolute;top:1895;left:634"><nobr>)</nobr></div>
+<div style="position:absolute;top:1895;left:591"><nobr>2(</nobr></div>
+<div style="position:absolute;top:1895;left:516"><nobr>2sin  </nobr></div>
+<div style="position:absolute;top:1862;left:820"><nobr>)</nobr></div>
+<div style="position:absolute;top:1862;left:786"><nobr>(</nobr></div>
+<div style="position:absolute;top:1862;left:732"><nobr>)(</nobr></div>
+<div style="position:absolute;top:1862;left:646"><nobr>)()</nobr></div>
+<div style="position:absolute;top:1862;left:612"><nobr>(</nobr></div>
+<div style="position:absolute;top:1862;left:566"><nobr>)(</nobr></div>
+<div style="position:absolute;top:1874;left:528"><nobr>2</nobr></div>
+<div style="position:absolute;top:1862;left:501"><nobr>1</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:1870;left:774"><nobr>20</nobr></div>
+<div style="position:absolute;top:1870;left:720"><nobr>10</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:1889;left:715"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1889;left:691"><nobr>π</nobr></div>
+<div style="position:absolute;top:1889;left:624"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1889;left:563"><nobr>π</nobr></div>
+<div style="position:absolute;top:1855;left:811"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1855;left:636"><nobr>τ</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:1904;left:706"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1904;left:579"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1870;left:603"><nobr><i>Q</i></nobr></div>
+<div style="position:absolute;top:1870;left:560"><nobr><i>I</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:1895;left:700"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:1895;left:605"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1895;left:572"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:1862;left:792"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1862;left:738"><nobr><i>NHt</i></nobr></div>
+<div style="position:absolute;top:1862;left:697"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:1862;left:661"><nobr><i>td</i></nobr></div>
+<div style="position:absolute;top:1862;left:548"><nobr><i>tCtC</i></nobr></div>
+<div style="position:absolute;top:1851;left:527"><nobr><i>P</i></nobr></div>
+<div style="position:absolute;top:1862;left:475"><nobr><i>item</i></nobr></div>
+<div style="position:absolute;top:1890;left:647"><nobr>−</nobr></div>
+<div style="position:absolute;top:1890;left:613"><nobr>−</nobr></div>
+<div style="position:absolute;top:1856;left:828"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1856;left:800"><nobr>−</nobr></div>
+<div style="position:absolute;top:1856;left:689"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1856;left:654"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1856;left:626"><nobr>−</nobr></div>
+<div style="position:absolute;top:1856;left:585"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1856;left:542"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1856;left:512"><nobr>=</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:18px;font-family:Times">
+<div style="position:absolute;top:1949;left:549"><nobr>(</nobr></div>
+<div style="position:absolute;top:1949;left:633"><nobr>)</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:19px;font-family:Times">
+<div style="position:absolute;top:1948;left:526"><nobr>[</nobr></div>
+<div style="position:absolute;top:1948;left:720"><nobr>]<font style="font-size:13px">)</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1959;left:651"><nobr>2sin(</nobr></div>
+<div style="position:absolute;top:1959;left:627"><nobr>)</nobr></div>
+<div style="position:absolute;top:1959;left:587"><nobr>2(</nobr></div>
+<div style="position:absolute;top:1959;left:515"><nobr>2sin  </nobr></div>
+<div style="position:absolute;top:1927;left:816"><nobr>)(</nobr></div>
+<div style="position:absolute;top:1927;left:775"><nobr>)</nobr></div>
+<div style="position:absolute;top:1927;left:743"><nobr>(</nobr></div>
+<div style="position:absolute;top:1927;left:695"><nobr>)</nobr></div>
+<div style="position:absolute;top:1927;left:629"><nobr>()(</nobr></div>
+<div style="position:absolute;top:1927;left:596"><nobr>)</nobr></div>
+<div style="position:absolute;top:1927;left:564"><nobr>(</nobr></div>
+<div style="position:absolute;top:1939;left:528"><nobr>2</nobr></div>
+<div style="position:absolute;top:1927;left:502"><nobr>2</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:1935;left:805"><nobr>20</nobr></div>
+<div style="position:absolute;top:1935;left:732"><nobr>10</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:1953;left:705"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1953;left:682"><nobr>π</nobr></div>
+<div style="position:absolute;top:1953;left:618"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1953;left:560"><nobr>π</nobr></div>
+<div style="position:absolute;top:1921;left:766"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1921;left:685"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1921;left:587"><nobr>τ</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:1967;left:696"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1967;left:575"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:1935;left:620"><nobr><i>Q</i></nobr></div>
+<div style="position:absolute;top:1935;left:558"><nobr><i>I</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:1959;left:690"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:1959;left:600"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1959;left:569"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:1927;left:822"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1927;left:781"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:1927;left:748"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1927;left:709"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:1927;left:609"><nobr><i>tdtC</i></nobr></div>
+<div style="position:absolute;top:1927;left:546"><nobr><i>tC</i></nobr></div>
+<div style="position:absolute;top:1917;left:528"><nobr><i>P</i></nobr></div>
+<div style="position:absolute;top:1927;left:475"><nobr><i>item</i></nobr></div>
+<div style="position:absolute;top:1954;left:640"><nobr>+</nobr></div>
+<div style="position:absolute;top:1954;left:608"><nobr>−</nobr></div>
+<div style="position:absolute;top:1922;left:834"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1922;left:756"><nobr>−</nobr></div>
+<div style="position:absolute;top:1922;left:702"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1922;left:676"><nobr>−</nobr></div>
+<div style="position:absolute;top:1922;left:647"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1922;left:604"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1922;left:577"><nobr>−</nobr></div>
+<div style="position:absolute;top:1922;left:541"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1922;left:513"><nobr>=</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:18px;font-family:Times">
+<div style="position:absolute;top:2014;left:663"><nobr>(</nobr></div>
+<div style="position:absolute;top:2014;left:761"><nobr>)</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:19px;font-family:Times">
+<div style="position:absolute;top:2014;left:534"><nobr>[</nobr></div>
+<div style="position:absolute;top:2014;left:766"><nobr>]<font style="font-size:13px">)</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:2025;left:707"><nobr>2(</nobr></div>
+<div style="position:absolute;top:2025;left:669"><nobr>2</nobr></div>
+<div style="position:absolute;top:2025;left:639"><nobr>cos</nobr></div>
+<div style="position:absolute;top:2025;left:616"><nobr>)</nobr></div>
+<div style="position:absolute;top:2025;left:570"><nobr>2</nobr></div>
+<div style="position:absolute;top:2025;left:539"><nobr>cos(</nobr></div>
+<div style="position:absolute;top:1992;left:821"><nobr>)</nobr></div>
+<div style="position:absolute;top:1992;left:784"><nobr>(</nobr></div>
+<div style="position:absolute;top:1992;left:724"><nobr>)(</nobr></div>
+<div style="position:absolute;top:1992;left:667"><nobr>)</nobr></div>
+<div style="position:absolute;top:1992;left:630"><nobr>(</nobr></div>
+<div style="position:absolute;top:1992;left:580"><nobr>)(</nobr></div>
+<div style="position:absolute;top:2005;left:536"><nobr>2</nobr></div>
+<div style="position:absolute;top:1992;left:506"><nobr>3</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:2001;left:771"><nobr>20</nobr></div>
+<div style="position:absolute;top:2001;left:711"><nobr>20</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:2019;left:743"><nobr>τ</nobr></div>
+<div style="position:absolute;top:2019;left:677"><nobr>π</nobr></div>
+<div style="position:absolute;top:2019;left:606"><nobr>τ</nobr></div>
+<div style="position:absolute;top:2019;left:578"><nobr>π</nobr></div>
+<div style="position:absolute;top:1986;left:811"><nobr>τ</nobr></div>
+<div style="position:absolute;top:1986;left:656"><nobr>τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:2020;left:732"><nobr>−</nobr></div>
+<div style="position:absolute;top:2020;left:626"><nobr>−</nobr></div>
+<div style="position:absolute;top:1987;left:830"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1987;left:799"><nobr>−</nobr></div>
+<div style="position:absolute;top:1987;left:675"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1987;left:645"><nobr>−</nobr></div>
+<div style="position:absolute;top:1987;left:600"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1987;left:551"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:1987;left:519"><nobr>=</nobr></div>
+<div style="position:absolute;top:2025;left:723"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:2025;left:687"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:2025;left:588"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:1992;left:790"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1992;left:730"><nobr><i>NHt</i></nobr></div>
+<div style="position:absolute;top:1992;left:683"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:1992;left:636"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:1992;left:586"><nobr><i>Ct</i></nobr></div>
+<div style="position:absolute;top:1992;left:557"><nobr><i>C</i></nobr></div>
+<div style="position:absolute;top:1983;left:535"><nobr><i>P</i></nobr></div>
+<div style="position:absolute;top:1992;left:475"><nobr><i>item</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:2033;left:694"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:2033;left:595"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:2001;left:619"><nobr><i>Q</i></nobr></div>
+<div style="position:absolute;top:2001;left:569"><nobr><i>Q</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:19px;font-family:Times">
+<div style="position:absolute;top:2082;left:740"><nobr>(</nobr></div>
+<div style="position:absolute;top:2082;left:829"><nobr>)</nobr></div>
+</span></font>
+<font size="4" face="Times"><span style="font-size:20px;font-family:Times">
+<div style="position:absolute;top:2081;left:622"><nobr>[</nobr></div>
+<div style="position:absolute;top:2081;left:834"><nobr>]<font style="font-size:14px">)</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:2093;left:780"><nobr>2(</nobr></div>
+<div style="position:absolute;top:2093;left:718"><nobr>2cos</nobr></div>
+<div style="position:absolute;top:2093;left:697"><nobr>)</nobr></div>
+<div style="position:absolute;top:2093;left:627"><nobr>2cos(</nobr></div>
+<div style="position:absolute;top:2093;left:609"><nobr>)</nobr></div>
+<div style="position:absolute;top:2093;left:517"><nobr>()(  </nobr></div>
+<div style="position:absolute;top:2059;left:786"><nobr>)</nobr></div>
+<div style="position:absolute;top:2059;left:752"><nobr>(</nobr></div>
+<div style="position:absolute;top:2059;left:698"><nobr>)(</nobr></div>
+<div style="position:absolute;top:2059;left:647"><nobr>)</nobr></div>
+<div style="position:absolute;top:2059;left:613"><nobr>(</nobr></div>
+<div style="position:absolute;top:2059;left:569"><nobr>)(</nobr></div>
+<div style="position:absolute;top:2072;left:532"><nobr>2</nobr></div>
+<div style="position:absolute;top:2059;left:504"><nobr>4</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:2068;left:740"><nobr>10</nobr></div>
+<div style="position:absolute;top:2068;left:686"><nobr>10</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:2087;left:813"><nobr>τ</nobr></div>
+<div style="position:absolute;top:2087;left:752"><nobr>π</nobr></div>
+<div style="position:absolute;top:2087;left:687"><nobr>τ</nobr></div>
+<div style="position:absolute;top:2087;left:662"><nobr>π</nobr></div>
+<div style="position:absolute;top:2087;left:599"><nobr>τ</nobr></div>
+<div style="position:absolute;top:2053;left:776"><nobr>τ</nobr></div>
+<div style="position:absolute;top:2053;left:637"><nobr>τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:2088;left:803"><nobr>−</nobr></div>
+<div style="position:absolute;top:2088;left:706"><nobr>+</nobr></div>
+<div style="position:absolute;top:2088;left:617"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2088;left:589"><nobr>−</nobr></div>
+<div style="position:absolute;top:2088;left:558"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2054;left:794"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2054;left:766"><nobr>−</nobr></div>
+<div style="position:absolute;top:2054;left:655"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2054;left:627"><nobr>−</nobr></div>
+<div style="position:absolute;top:2054;left:588"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2054;left:545"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:2054;left:516"><nobr>=</nobr></div>
+<div style="position:absolute;top:2093;left:794"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:2093;left:761"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:2093;left:671"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:2093;left:529"><nobr><i>tdtd</i></nobr></div>
+<div style="position:absolute;top:2059;left:757"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:2059;left:703"><nobr><i>NHt</i></nobr></div>
+<div style="position:absolute;top:2059;left:662"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:2059;left:551"><nobr><i>tCtC</i></nobr></div>
+<div style="position:absolute;top:2048;left:531"><nobr><i>P</i></nobr></div>
+<div style="position:absolute;top:2059;left:475"><nobr><i>item</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:2102;left:768"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:2102;left:678"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:2068;left:606"><nobr><i>I</i></nobr></div>
+<div style="position:absolute;top:2068;left:563"><nobr><i>I</i></nobr></div>
+</span></font>
+
+<div style="position:absolute;top:2701;left:0"><hr><table width="100%" border="0"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="3"><b>Page 3</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3844;left:79"><nobr><i>Proceedings of ION GNSS 2004 (Session A3), Long Beach, CA, September 21-24, 2004</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:3845;left:805"><nobr>3</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:2838;left:79"><nobr>scale. Figure 1, 2, 3 show that the new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-τ)</nobr></div>
+<div style="position:absolute;top:2855;left:79"><nobr>is uncorrelated with the other three new codes. </nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3096;left:121"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3096;left:145"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:3096;left:171"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:3096;left:198"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:3096;left:224"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:3096;left:250"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3096;left:277"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:3096;left:303"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:3096;left:330"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:3096;left:356"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:3096;left:385"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3090;left:118"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3067;left:112"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3044;left:118"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3022;left:112"><nobr><b>1.5</b></nobr></div>
+<div style="position:absolute;top:2999;left:118"><nobr><b>2</b></nobr></div>
+<div style="position:absolute;top:2976;left:112"><nobr><b>2.5</b></nobr></div>
+<div style="position:absolute;top:2953;left:118"><nobr><b>3</b></nobr></div>
+<div style="position:absolute;top:2930;left:112"><nobr><b>3.5</b></nobr></div>
+<div style="position:absolute;top:2907;left:118"><nobr><b>4</b></nobr></div>
+<div style="position:absolute;top:2885;left:112"><nobr><b>4.5</b></nobr></div>
+<div style="position:absolute;top:2880;left:123"><nobr><b>x 104</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3108;left:228"><nobr><b>Code Delay (ms)</b></nobr></div>
+<div style="position:absolute;top:3015;left:96"><nobr><b>C</b></nobr></div>
+<div style="position:absolute;top:3010;left:96"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:3006;left:96"><nobr><b>rre</b></nobr></div>
+<div style="position:absolute;top:2996;left:96"><nobr><b>la</b></nobr></div>
+<div style="position:absolute;top:2991;left:96"><nobr><b>tio</b></nobr></div>
+<div style="position:absolute;top:2982;left:96"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:2976;left:96"><nobr><b>V</b></nobr></div>
+<div style="position:absolute;top:2971;left:96"><nobr><b>alu</b></nobr></div>
+<div style="position:absolute;top:2961;left:96"><nobr><b>e</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3137;left:79"><nobr><b>Figure 1: Cross-correlation of new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-</b>τ<b>)</b></nobr></div>
+<div style="position:absolute;top:3155;left:79"><nobr><b>with C<font style="font-size:7px">I</font>(t)*C<font style="font-size:7px">Q</font>(t-</b>τ<b>)</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3404;left:121"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3404;left:145"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:3404;left:171"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:3404;left:198"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:3404;left:224"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:3404;left:250"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3404;left:277"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:3404;left:303"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:3404;left:330"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:3404;left:356"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:3404;left:385"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3399;left:118"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3376;left:112"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3353;left:118"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3330;left:112"><nobr><b>1.5</b></nobr></div>
+<div style="position:absolute;top:3307;left:118"><nobr><b>2</b></nobr></div>
+<div style="position:absolute;top:3284;left:112"><nobr><b>2.5</b></nobr></div>
+<div style="position:absolute;top:3261;left:118"><nobr><b>3</b></nobr></div>
+<div style="position:absolute;top:3239;left:112"><nobr><b>3.5</b></nobr></div>
+<div style="position:absolute;top:3216;left:118"><nobr><b>4</b></nobr></div>
+<div style="position:absolute;top:3193;left:112"><nobr><b>4.5</b></nobr></div>
+<div style="position:absolute;top:3188;left:123"><nobr><b>x 104</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3415;left:228"><nobr><b>Code Delay (ms)</b></nobr></div>
+<div style="position:absolute;top:3322;left:97"><nobr><b>C</b></nobr></div>
+<div style="position:absolute;top:3317;left:97"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:3312;left:97"><nobr><b>rrelatio</b></nobr></div>
+<div style="position:absolute;top:3289;left:97"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:3282;left:97"><nobr><b>V</b></nobr></div>
+<div style="position:absolute;top:3277;left:97"><nobr><b>alu</b></nobr></div>
+<div style="position:absolute;top:3267;left:97"><nobr><b>e</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3445;left:79"><nobr><b>Figure 2: Cross-correlation of new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-</b>τ<b>)</b></nobr></div>
+<div style="position:absolute;top:3463;left:79"><nobr><b>with C<font style="font-size:7px">I</font>(t-</b>τ<b>)*C<font style="font-size:7px">Q</font>(t)</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3713;left:121"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3713;left:145"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:3713;left:171"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:3713;left:198"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:3713;left:224"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:3713;left:250"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3713;left:277"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:3713;left:303"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:3713;left:330"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:3713;left:356"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:3713;left:385"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3707;left:118"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3684;left:112"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3661;left:118"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3639;left:112"><nobr><b>1.5</b></nobr></div>
+<div style="position:absolute;top:3616;left:118"><nobr><b>2</b></nobr></div>
+<div style="position:absolute;top:3593;left:112"><nobr><b>2.5</b></nobr></div>
+<div style="position:absolute;top:3570;left:118"><nobr><b>3</b></nobr></div>
+<div style="position:absolute;top:3547;left:112"><nobr><b>3.5</b></nobr></div>
+<div style="position:absolute;top:3524;left:118"><nobr><b>4</b></nobr></div>
+<div style="position:absolute;top:3502;left:112"><nobr><b>4.5</b></nobr></div>
+<div style="position:absolute;top:3497;left:123"><nobr><b>x 104</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3724;left:226"><nobr><b>Code Delay (ms)</b></nobr></div>
+<div style="position:absolute;top:3630;left:99"><nobr><b>C</b></nobr></div>
+<div style="position:absolute;top:3625;left:99"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:3621;left:99"><nobr><b>rrelatio</b></nobr></div>
+<div style="position:absolute;top:3597;left:99"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:3591;left:99"><nobr><b>Valu</b></nobr></div>
+<div style="position:absolute;top:3576;left:99"><nobr><b>e</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3754;left:79"><nobr><b>Figure 3: Cross-correlation of new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-</b>τ<b>)</b></nobr></div>
+<div style="position:absolute;top:3772;left:79"><nobr><b>with C<font style="font-size:7px">I</font>(t)*C<font style="font-size:7px">I</font>(t-</b>τ<b>)</b></nobr></div>
+<div style="position:absolute;top:2837;left:473"><nobr>From figure 4, 5, it can be found that both correlation</nobr></div>
+<div style="position:absolute;top:2854;left:473"><nobr>peaks are at the same position. This means that the initial</nobr></div>
+<div style="position:absolute;top:2870;left:473"><nobr>point of the new code is the same as that of the GPS Q5</nobr></div>
+<div style="position:absolute;top:2887;left:473"><nobr>code.</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3145;left:515"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3145;left:539"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:3145;left:565"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:3145;left:591"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:3145;left:618"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:3145;left:644"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3145;left:671"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:3145;left:697"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:3145;left:724"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:3145;left:750"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:3145;left:779"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3139;left:512"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3116;left:506"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3093;left:512"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3071;left:506"><nobr><b>1.5</b></nobr></div>
+<div style="position:absolute;top:3048;left:512"><nobr><b>2</b></nobr></div>
+<div style="position:absolute;top:3025;left:506"><nobr><b>2.5</b></nobr></div>
+<div style="position:absolute;top:3002;left:512"><nobr><b>3</b></nobr></div>
+<div style="position:absolute;top:2979;left:506"><nobr><b>3.5</b></nobr></div>
+<div style="position:absolute;top:2956;left:512"><nobr><b>4</b></nobr></div>
+<div style="position:absolute;top:2934;left:506"><nobr><b>4.5</b></nobr></div>
+<div style="position:absolute;top:2929;left:517"><nobr><b>x 104</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3157;left:620"><nobr><b>Code Delay (ms)</b></nobr></div>
+<div style="position:absolute;top:3064;left:497"><nobr><b>C</b></nobr></div>
+<div style="position:absolute;top:3059;left:497"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:3054;left:497"><nobr><b>rrelatio</b></nobr></div>
+<div style="position:absolute;top:3031;left:497"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:3025;left:497"><nobr><b>V</b></nobr></div>
+<div style="position:absolute;top:3020;left:497"><nobr><b>alu</b></nobr></div>
+<div style="position:absolute;top:3010;left:497"><nobr><b>e</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3186;left:473"><nobr><b>Figure 4: Autocorrelation of new code C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-</b>τ<b>)</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:3435;left:515"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3435;left:539"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:3435;left:565"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:3435;left:591"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:3435;left:618"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:3435;left:644"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3435;left:671"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:3435;left:697"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:3435;left:724"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:3435;left:750"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:3435;left:779"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3430;left:512"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:3407;left:506"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:3384;left:512"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:3361;left:506"><nobr><b>1.5</b></nobr></div>
+<div style="position:absolute;top:3338;left:512"><nobr><b>2</b></nobr></div>
+<div style="position:absolute;top:3316;left:506"><nobr><b>2.5</b></nobr></div>
+<div style="position:absolute;top:3293;left:512"><nobr><b>3</b></nobr></div>
+<div style="position:absolute;top:3270;left:506"><nobr><b>3.5</b></nobr></div>
+<div style="position:absolute;top:3247;left:512"><nobr><b>4</b></nobr></div>
+<div style="position:absolute;top:3224;left:506"><nobr><b>4.5</b></nobr></div>
+<div style="position:absolute;top:3220;left:517"><nobr><b>x 104</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:3448;left:620"><nobr><b>Code Delay (ms)</b></nobr></div>
+<div style="position:absolute;top:3362;left:497"><nobr><b>A</b></nobr></div>
+<div style="position:absolute;top:3357;left:497"><nobr><b>u</b></nobr></div>
+<div style="position:absolute;top:3353;left:497"><nobr><b>to</b></nobr></div>
+<div style="position:absolute;top:3346;left:497"><nobr><b>co</b></nobr></div>
+<div style="position:absolute;top:3338;left:497"><nobr><b>rrelatio</b></nobr></div>
+<div style="position:absolute;top:3314;left:497"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:3308;left:497"><nobr><b>V</b></nobr></div>
+<div style="position:absolute;top:3303;left:497"><nobr><b>alu</b></nobr></div>
+<div style="position:absolute;top:3293;left:497"><nobr><b>e</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:3476;left:473"><nobr><b>Figure 5: Autocorrelation of GPS Q5 code</b></nobr></div>
+<div style="position:absolute;top:3518;left:473"><nobr>Another interesting character of this new code is that its</nobr></div>
+<div style="position:absolute;top:3534;left:473"><nobr>autocorrelation isolation is at least 1.2 dB better than that</nobr></div>
+<div style="position:absolute;top:3551;left:473"><nobr>of the Q5 code, which is the case for PRN 13. The</nobr></div>
+<div style="position:absolute;top:3568;left:473"><nobr>autocorrelation isolation is also determined by the choice</nobr></div>
+<div style="position:absolute;top:3585;left:473"><nobr>of the sample delay that is discussed below.   </nobr></div>
+<div style="position:absolute;top:3619;left:473"><nobr><b>Sample Delay Selection </b></nobr></div>
+<div style="position:absolute;top:3652;left:473"><nobr>Item3 of equation (3) is rewritten as: </nobr></div>
+<div style="position:absolute;top:3761;left:473"><nobr>From the previous discussion, we know that in order to</nobr></div>
+<div style="position:absolute;top:3779;left:473"><nobr>make the signal-to-noise ratio higher, the sample delay τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:18px;font-family:Times">
+<div style="position:absolute;top:3712;left:663"><nobr>(</nobr></div>
+<div style="position:absolute;top:3712;left:761"><nobr>)</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:19px;font-family:Times">
+<div style="position:absolute;top:3711;left:534"><nobr>[</nobr></div>
+<div style="position:absolute;top:3711;left:766"><nobr>]<font style="font-size:13px">)</font></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3722;left:707"><nobr>2(</nobr></div>
+<div style="position:absolute;top:3722;left:669"><nobr>2</nobr></div>
+<div style="position:absolute;top:3722;left:639"><nobr>cos</nobr></div>
+<div style="position:absolute;top:3722;left:616"><nobr>)</nobr></div>
+<div style="position:absolute;top:3722;left:570"><nobr>2</nobr></div>
+<div style="position:absolute;top:3722;left:539"><nobr>cos(</nobr></div>
+<div style="position:absolute;top:3690;left:821"><nobr>)</nobr></div>
+<div style="position:absolute;top:3690;left:784"><nobr>(</nobr></div>
+<div style="position:absolute;top:3690;left:724"><nobr>)(</nobr></div>
+<div style="position:absolute;top:3690;left:667"><nobr>)</nobr></div>
+<div style="position:absolute;top:3690;left:630"><nobr>(</nobr></div>
+<div style="position:absolute;top:3690;left:580"><nobr>)(</nobr></div>
+<div style="position:absolute;top:3702;left:536"><nobr>2</nobr></div>
+<div style="position:absolute;top:3690;left:506"><nobr>3</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:3699;left:771"><nobr>20</nobr></div>
+<div style="position:absolute;top:3699;left:711"><nobr>20</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:3716;left:743"><nobr>τ</nobr></div>
+<div style="position:absolute;top:3716;left:677"><nobr>π</nobr></div>
+<div style="position:absolute;top:3716;left:606"><nobr>τ</nobr></div>
+<div style="position:absolute;top:3716;left:578"><nobr>π</nobr></div>
+<div style="position:absolute;top:3684;left:811"><nobr>τ</nobr></div>
+<div style="position:absolute;top:3684;left:656"><nobr>τ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:3717;left:732"><nobr>−</nobr></div>
+<div style="position:absolute;top:3717;left:626"><nobr>−</nobr></div>
+<div style="position:absolute;top:3685;left:830"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:3685;left:799"><nobr>−</nobr></div>
+<div style="position:absolute;top:3685;left:675"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:3685;left:645"><nobr>−</nobr></div>
+<div style="position:absolute;top:3685;left:600"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:3685;left:551"><nobr>⋅</nobr></div>
+<div style="position:absolute;top:3685;left:519"><nobr>=</nobr></div>
+<div style="position:absolute;top:3722;left:723"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:3722;left:687"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:3722;left:588"><nobr><i>f</i></nobr></div>
+<div style="position:absolute;top:3690;left:790"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:3690;left:730"><nobr><i>NHt</i></nobr></div>
+<div style="position:absolute;top:3690;left:683"><nobr><i>NH</i></nobr></div>
+<div style="position:absolute;top:3690;left:636"><nobr><i>t</i></nobr></div>
+<div style="position:absolute;top:3690;left:586"><nobr><i>Ct</i></nobr></div>
+<div style="position:absolute;top:3690;left:557"><nobr><i>C</i></nobr></div>
+<div style="position:absolute;top:3680;left:535"><nobr><i>P</i></nobr></div>
+<div style="position:absolute;top:3690;left:475"><nobr><i>item</i></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:3731;left:694"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:3731;left:595"><nobr><i>IF</i></nobr></div>
+<div style="position:absolute;top:3699;left:619"><nobr><i>Q</i></nobr></div>
+<div style="position:absolute;top:3699;left:569"><nobr><i>Q</i></nobr></div>
+</span></font>
+
+<div style="position:absolute;top:3964;left:0"><hr><table width="100%" border="0"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="4"><b>Page 4</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:5107;left:79"><nobr><i>Proceedings of ION GNSS 2004 (Session A3), Long Beach, CA, September 21-24, 2004</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:5108;left:805"><nobr>4</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:4101;left:79"><nobr>must be chosen to make cos(2πf<font style="font-size:7px">IF</font>τ) close to 1. Actually,</nobr></div>
+<div style="position:absolute;top:4119;left:79"><nobr>cos(2πf<font style="font-size:7px">IF</font>τ) can be considered as one part of the signal</nobr></div>
+<div style="position:absolute;top:4136;left:79"><nobr>amplitude which is expected to be as high as possible.</nobr></div>
+<div style="position:absolute;top:4152;left:79"><nobr>Since the f<font style="font-size:7px">IF</font></nobr></div>
+<div style="position:absolute;top:4152;left:175"><nobr>is known according to the front-end</nobr></div>
+<div style="position:absolute;top:4169;left:79"><nobr>frequency plan, a series of sample delay values can be</nobr></div>
+<div style="position:absolute;top:4186;left:79"><nobr>found to meet this requirement. </nobr></div>
+<div style="position:absolute;top:4219;left:79"><nobr>Another criterion to choose the sample delay is to</nobr></div>
+<div style="position:absolute;top:4236;left:79"><nobr>minimize the performance degradation due to the NH</nobr></div>
+<div style="position:absolute;top:4253;left:79"><nobr>code phase transition. If there is a phase shift of two</nobr></div>
+<div style="position:absolute;top:4270;left:79"><nobr>consecutive NH bits, only a few samples will be affected.</nobr></div>
+<div style="position:absolute;top:4286;left:79"><nobr>When the sample delay is small, the NH code can be</nobr></div>
+<div style="position:absolute;top:4303;left:79"><nobr>mostly removed by multiplying it by its slightly delayed</nobr></div>
+<div style="position:absolute;top:4320;left:79"><nobr>version. Actually, item4 of equation (3) can also be used</nobr></div>
+<div style="position:absolute;top:4337;left:79"><nobr>to implement the signal acquisition. However, the data bit</nobr></div>
+<div style="position:absolute;top:4354;left:79"><nobr>phase transition on the in-phase channel will further</nobr></div>
+<div style="position:absolute;top:4370;left:79"><nobr>degrade the correlation performance. As a result, only</nobr></div>
+<div style="position:absolute;top:4388;left:79"><nobr>C<font style="font-size:7px">Q</font>(t)*C<font style="font-size:7px">Q</font>(t-τ) in item3 is generated as the local PRN code</nobr></div>
+<div style="position:absolute;top:4405;left:79"><nobr>to perform the signal acquisition.  </nobr></div>
+<div style="position:absolute;top:4439;left:79"><nobr>The third criterion to select the sample delay is to</nobr></div>
+<div style="position:absolute;top:4455;left:79"><nobr>maximize the autocorrelation isolation. Figure 6 shows</nobr></div>
+<div style="position:absolute;top:4472;left:79"><nobr>autocorrelation isolation values for different sample</nobr></div>
+<div style="position:absolute;top:4489;left:79"><nobr>delays. Those sample delays that correspond to peak</nobr></div>
+<div style="position:absolute;top:4506;left:79"><nobr>values are selected to get a high correlation gain. </nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:4747;left:121"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:4747;left:146"><nobr><b>20</b></nobr></div>
+<div style="position:absolute;top:4747;left:172"><nobr><b>40</b></nobr></div>
+<div style="position:absolute;top:4747;left:198"><nobr><b>60</b></nobr></div>
+<div style="position:absolute;top:4747;left:225"><nobr><b>80</b></nobr></div>
+<div style="position:absolute;top:4747;left:249"><nobr><b>100</b></nobr></div>
+<div style="position:absolute;top:4747;left:276"><nobr><b>120</b></nobr></div>
+<div style="position:absolute;top:4747;left:302"><nobr><b>140</b></nobr></div>
+<div style="position:absolute;top:4747;left:329"><nobr><b>160</b></nobr></div>
+<div style="position:absolute;top:4747;left:355"><nobr><b>180</b></nobr></div>
+<div style="position:absolute;top:4747;left:381"><nobr><b>200</b></nobr></div>
+<div style="position:absolute;top:4741;left:118"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:4700;left:114"><nobr><b>50</b></nobr></div>
+<div style="position:absolute;top:4659;left:111"><nobr><b>100</b></nobr></div>
+<div style="position:absolute;top:4618;left:111"><nobr><b>150</b></nobr></div>
+<div style="position:absolute;top:4576;left:111"><nobr><b>200</b></nobr></div>
+<div style="position:absolute;top:4536;left:111"><nobr><b>250</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:4759;left:231"><nobr><b>Sample Delay</b></nobr></div>
+<div style="position:absolute;top:4685;left:100"><nobr><b>C</b></nobr></div>
+<div style="position:absolute;top:4679;left:100"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:4675;left:100"><nobr><b>rre</b></nobr></div>
+<div style="position:absolute;top:4666;left:100"><nobr><b>la</b></nobr></div>
+<div style="position:absolute;top:4660;left:100"><nobr><b>tio</b></nobr></div>
+<div style="position:absolute;top:4651;left:100"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:4645;left:100"><nobr><b>Is</b></nobr></div>
+<div style="position:absolute;top:4639;left:100"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:4635;left:100"><nobr><b>la</b></nobr></div>
+<div style="position:absolute;top:4629;left:100"><nobr><b>tio</b></nobr></div>
+<div style="position:absolute;top:4621;left:100"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:4615;left:100"><nobr><b>in</b></nobr></div>
+<div style="position:absolute;top:4607;left:100"><nobr><b>R</b></nobr></div>
+<div style="position:absolute;top:4601;left:100"><nobr><b>atio</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:4787;left:79"><nobr><b>Figure 6: Correlation isolation for different sample</b></nobr></div>
+<div style="position:absolute;top:4803;left:79"><nobr><b>delays </b></nobr></div>
+<div style="position:absolute;top:4846;left:79"><nobr><b>Noise Power</b></nobr></div>
+<div style="position:absolute;top:4879;left:79"><nobr>Assume that noise added to the incoming signal is white</nobr></div>
+<div style="position:absolute;top:4897;left:79"><nobr>Gaussian noise whose power equals its variance σ<font style="font-size:7px">2</font>. The</nobr></div>
+<div style="position:absolute;top:4914;left:79"><nobr>incoming sampled noise will be multiplied by its delayed</nobr></div>
+<div style="position:absolute;top:4931;left:79"><nobr>version. The resulting noise power can be calculated by</nobr></div>
+<div style="position:absolute;top:4947;left:79"><nobr>two methods that can be easily implemented in</nobr></div>
+<div style="position:absolute;top:4964;left:79"><nobr>MATLAB<font style="font-size:7px">TM</font>.</nobr></div>
+<div style="position:absolute;top:4998;left:79"><nobr>The definition of noise power is expressed as:</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:5034;left:379"><nobr>(4)</nobr></div>
+<div style="position:absolute;top:5034;left:250"><nobr>)]}([{</nobr></div>
+<div style="position:absolute;top:5034;left:135"><nobr>)]([</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:7px;font-family:Times">
+<div style="position:absolute;top:5031;left:326"><nobr>2</nobr></div>
+<div style="position:absolute;top:5031;left:224"><nobr>2</nobr></div>
+<div style="position:absolute;top:5031;left:154"><nobr>2</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:13px;font-family:Times">
+<div style="position:absolute;top:5034;left:259"><nobr><i>tnE</i></nobr></div>
+<div style="position:absolute;top:5034;left:122"><nobr><i>tnE</i></nobr></div>
+<div style="position:absolute;top:5034;left:82"><nobr><i>P<font style="font-size:7px">n</font></i></nobr></div>
+<div style="position:absolute;top:5029;left:236"><nobr>+</nobr></div>
+<div style="position:absolute;top:5029;left:193"><nobr>=</nobr></div>
+<div style="position:absolute;top:5029;left:106"><nobr>=</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:14px;font-family:Times">
+<div style="position:absolute;top:5028;left:207"><nobr>σ</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:4100;left:473"><nobr>It is found that the mean value of the new noise samples is</nobr></div>
+<div style="position:absolute;top:4117;left:473"><nobr>still 0. So, the new noise power can be found by</nobr></div>
+<div style="position:absolute;top:4134;left:473"><nobr>calculating its variance σ<font style="font-size:7px">2</font>.</nobr></div>
+<div style="position:absolute;top:4168;left:473"><nobr>Method 2 calculates the Fourier transform of the</nobr></div>
+<div style="position:absolute;top:4185;left:473"><nobr>autocorrelation function of the noise sample to get its</nobr></div>
+<div style="position:absolute;top:4202;left:473"><nobr>power spectral density. Then it integrates it to calculate</nobr></div>
+<div style="position:absolute;top:4218;left:473"><nobr>the noise power. </nobr></div>
+<div style="position:absolute;top:4252;left:473"><nobr>By using both methods above, it is found that the noise</nobr></div>
+<div style="position:absolute;top:4269;left:473"><nobr>power is squared. Very long coherent integration is</nobr></div>
+<div style="position:absolute;top:4285;left:473"><nobr>expected to get enough correlation gain. However, the</nobr></div>
+<div style="position:absolute;top:4302;left:473"><nobr>existence of code Doppler may degrade the correlation</nobr></div>
+<div style="position:absolute;top:4319;left:473"><nobr>gain significantly. This issue will be discussed in the next</nobr></div>
+<div style="position:absolute;top:4336;left:473"><nobr>section.</nobr></div>
+<div style="position:absolute;top:4369;left:473"><nobr><b>Code Doppler Issue</b></nobr></div>
+<div style="position:absolute;top:4403;left:473"><nobr>Assume that the maximum carrier Doppler for a static</nobr></div>
+<div style="position:absolute;top:4420;left:473"><nobr>receiver is 5 kHz. Then the corresponding maximum code</nobr></div>
+<div style="position:absolute;top:4436;left:473"><nobr>Doppler is: </nobr></div>
+<div style="position:absolute;top:4470;left:658"><nobr>Hz 5.43</nobr></div>
+<div style="position:absolute;top:4470;left:618"><nobr>45.</nobr></div>
+<div style="position:absolute;top:4470;left:583"><nobr>1176</nobr></div>
+<div style="position:absolute;top:4470;left:537"><nobr>/23.10</nobr></div>
+<div style="position:absolute;top:4470;left:489"><nobr>5000</nobr></div>
+<div style="position:absolute;top:4465;left:644"><nobr>≈</nobr></div>
+<div style="position:absolute;top:4465;left:526"><nobr>×</nobr></div>
+<div style="position:absolute;top:4504;left:473"><nobr>For 1-second coherent integration, the code delay shift</nobr></div>
+<div style="position:absolute;top:4521;left:473"><nobr>can be as high as 43.5 chips. In this case, no correlation</nobr></div>
+<div style="position:absolute;top:4538;left:473"><nobr>peak can be detected by adding the correlation values at</nobr></div>
+<div style="position:absolute;top:4554;left:473"><nobr>each 1 ms. </nobr></div>
+<div style="position:absolute;top:4588;left:473"><nobr>A code Doppler searching method is proposed here to</nobr></div>
+<div style="position:absolute;top:4605;left:473"><nobr>figure out this problem. For 1-second coherent</nobr></div>
+<div style="position:absolute;top:4621;left:473"><nobr>integration, the code Doppler searching range is set to –</nobr></div>
+<div style="position:absolute;top:4638;left:473"><nobr>43.5 Hz to 43.5 Hz with 1-Hz step sizes. The correlation</nobr></div>
+<div style="position:absolute;top:4655;left:473"><nobr>values of each 1-ms period will be shifted according to</nobr></div>
+<div style="position:absolute;top:4672;left:473"><nobr>the code Doppler and then summed together. The code</nobr></div>
+<div style="position:absolute;top:4689;left:473"><nobr>Doppler can be found by the detection of the highest peak</nobr></div>
+<div style="position:absolute;top:4705;left:473"><nobr>of the accumulated correlation value. Using this method,</nobr></div>
+<div style="position:absolute;top:4722;left:473"><nobr>the code delay and carrier Doppler can be acquired at the</nobr></div>
+<div style="position:absolute;top:4739;left:473"><nobr>same time, which further speeds up the acquisition</nobr></div>
+<div style="position:absolute;top:4756;left:473"><nobr>process. </nobr></div>
+<div style="position:absolute;top:4789;left:473"><nobr>The acquisition result is shown in Figure 7, where the</nobr></div>
+<div style="position:absolute;top:4806;left:473"><nobr>carrier intermediate frequency and sampling frequency</nobr></div>
+<div style="position:absolute;top:4823;left:473"><nobr>are set to 51.45 MHz and 42.16 MHz respectively.   </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:5227;left:0"><hr><table width="100%" border="0"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="5"><b>Page 5</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:6370;left:79"><nobr><i>Proceedings of ION GNSS 2004 (Session A3), Long Beach, CA, September 21-24, 2004</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:6371;left:805"><nobr>5</nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:4px;font-family:Times">
+<div style="position:absolute;top:5587;left:121"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:5587;left:145"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:5587;left:171"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:5587;left:198"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:5587;left:224"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:5587;left:250"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:5587;left:277"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:5587;left:303"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:5587;left:330"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:5587;left:356"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:5587;left:385"><nobr><b>1</b></nobr></div>
+<div style="position:absolute;top:5582;left:118"><nobr><b>0</b></nobr></div>
+<div style="position:absolute;top:5561;left:112"><nobr><b>0.1</b></nobr></div>
+<div style="position:absolute;top:5540;left:112"><nobr><b>0.2</b></nobr></div>
+<div style="position:absolute;top:5519;left:112"><nobr><b>0.3</b></nobr></div>
+<div style="position:absolute;top:5499;left:112"><nobr><b>0.4</b></nobr></div>
+<div style="position:absolute;top:5479;left:112"><nobr><b>0.5</b></nobr></div>
+<div style="position:absolute;top:5458;left:112"><nobr><b>0.6</b></nobr></div>
+<div style="position:absolute;top:5438;left:112"><nobr><b>0.7</b></nobr></div>
+<div style="position:absolute;top:5417;left:112"><nobr><b>0.8</b></nobr></div>
+<div style="position:absolute;top:5396;left:112"><nobr><b>0.9</b></nobr></div>
+<div style="position:absolute;top:5376;left:118"><nobr><b>1</b></nobr></div>
+</span></font>
+<font size="2" face="Times"><span style="font-size:5px;font-family:Times">
+<div style="position:absolute;top:5595;left:226"><nobr><b>Code Delay (ms)</b></nobr></div>
+<div style="position:absolute;top:5533;left:107"><nobr><b>N</b></nobr></div>
+<div style="position:absolute;top:5528;left:107"><nobr><b>o</b></nobr></div>
+<div style="position:absolute;top:5524;left:107"><nobr><b>rm</b></nobr></div>
+<div style="position:absolute;top:5515;left:107"><nobr><b>aliz</b></nobr></div>
+<div style="position:absolute;top:5504;left:107"><nobr><b>ed</b></nobr></div>
+<div style="position:absolute;top:5494;left:107"><nobr><b>A</b></nobr></div>
+<div style="position:absolute;top:5488;left:107"><nobr><b>u</b></nobr></div>
+<div style="position:absolute;top:5484;left:107"><nobr><b>to</b></nobr></div>
+<div style="position:absolute;top:5477;left:107"><nobr><b>co</b></nobr></div>
+<div style="position:absolute;top:5469;left:107"><nobr><b>rre</b></nobr></div>
+<div style="position:absolute;top:5459;left:107"><nobr><b>la</b></nobr></div>
+<div style="position:absolute;top:5454;left:107"><nobr><b>tio</b></nobr></div>
+<div style="position:absolute;top:5445;left:107"><nobr><b>n</b></nobr></div>
+<div style="position:absolute;top:5439;left:107"><nobr><b>V</b></nobr></div>
+<div style="position:absolute;top:5434;left:107"><nobr><b>a</b></nobr></div>
+<div style="position:absolute;top:5430;left:107"><nobr><b>lu</b></nobr></div>
+<div style="position:absolute;top:5424;left:107"><nobr><b>e</b></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:5627;left:79"><nobr><b>Figure 7: Acquisition result for PRN 10, 1-s coherent</b></nobr></div>
+<div style="position:absolute;top:5644;left:79"><nobr><b>integration</b></nobr></div>
+<div style="position:absolute;top:5669;left:79"><nobr>The fine frequency and NH code initial phase search can</nobr></div>
+<div style="position:absolute;top:5686;left:79"><nobr>be quickly completed after the detection of the correct</nobr></div>
+<div style="position:absolute;top:5703;left:79"><nobr>code delay. </nobr></div>
+<div style="position:absolute;top:5736;left:79"><nobr><b>SCHEME 2 - NH REMOVAL (NHR)</b></nobr></div>
+<div style="position:absolute;top:5770;left:79"><nobr>Although scheme 1 discussed above can acquire the</nobr></div>
+<div style="position:absolute;top:5787;left:79"><nobr>signal very fast, it may not be suitable to detect weak</nobr></div>
+<div style="position:absolute;top:5803;left:79"><nobr>signals because of the increase in noise power. In order to</nobr></div>
+<div style="position:absolute;top:5820;left:79"><nobr>acquire weak signals, an acquisition algorithm proposed</nobr></div>
+<div style="position:absolute;top:5837;left:79"><nobr>by Hegarty et al. [2003] is implemented and investigated.</nobr></div>
+<div style="position:absolute;top:5854;left:79"><nobr>Single or multiple 20-ms coherent integration periods on a</nobr></div>
+<div style="position:absolute;top:5871;left:79"><nobr>dataless channel is adopted in this method, which makes it</nobr></div>
+<div style="position:absolute;top:5887;left:79"><nobr>capable of acquiring weak signals. However, since there</nobr></div>
+<div style="position:absolute;top:5904;left:79"><nobr>are three unknowns (code delay, Doppler frequency, NH</nobr></div>
+<div style="position:absolute;top:5921;left:79"><nobr>code initial point) to search, the computation load of this</nobr></div>
+<div style="position:absolute;top:5938;left:79"><nobr>method is so heavy that it makes it impractical for</nobr></div>
+<div style="position:absolute;top:5954;left:79"><nobr>software signal processing. A shortened FFT version of</nobr></div>
+<div style="position:absolute;top:5971;left:79"><nobr>this method is proposed here that can greatly reduce the</nobr></div>
+<div style="position:absolute;top:5988;left:79"><nobr>computation burden.</nobr></div>
+<div style="position:absolute;top:6021;left:79"><nobr>The main idea is to divide the 20-ms samples equally into</nobr></div>
+<div style="position:absolute;top:6038;left:79"><nobr>20 sections and add them together to create 1-ms long</nobr></div>
+<div style="position:absolute;top:6055;left:79"><nobr>samples. These newly generated 1-ms samples are used to</nobr></div>
+<div style="position:absolute;top:6072;left:79"><nobr>detect the correlation peak. Instead of carrying out 20-ms</nobr></div>
+<div style="position:absolute;top:6088;left:79"><nobr>FFT, only a 1-ms FFT has to be performed. Figure 8</nobr></div>
+<div style="position:absolute;top:6105;left:79"><nobr>shows the acquisition result when the Doppler bin size is</nobr></div>
+<div style="position:absolute;top:6122;left:79"><nobr>set to 666.7 Hz. It is apparent that no correlation peak has</nobr></div>
+<div style="position:absolute;top:6139;left:79"><nobr>been found. This is due to the 20-bit NH code modulation.</nobr></div>
+<div style="position:absolute;top:6156;left:79"><nobr>The autocorrelation property of this short code is highly</nobr></div>
+<div style="position:absolute;top:6172;left:79"><nobr>degraded when the difference between the true Doppler</nobr></div>
+<div style="position:absolute;top:6189;left:79"><nobr>and the estimated Doppler is large.    </nobr></div>
+<div style="position:absolute;top:5628;left:473"><nobr><b>Figure 8: Acquisition result, step size = 666.7 Hz</b></nobr></div>
+<div style="position:absolute;top:5670;left:473"><nobr>In order to detect the correct correlation peak, the Doppler</nobr></div>
+<div style="position:absolute;top:5686;left:473"><nobr>bin size has to be set to a reasonable small value. Figure 9</nobr></div>
+<div style="position:absolute;top:5703;left:473"><nobr>shows the acquisition result with a 33.3-Hz step size. In</nobr></div>
+<div style="position:absolute;top:5720;left:473"><nobr>this case, the correlation peak has been detected</nobr></div>
+<div style="position:absolute;top:5737;left:473"><nobr>successfully. Actually, a fine frequency search has to be</nobr></div>
+<div style="position:absolute;top:5754;left:473"><nobr>carried out to avoid false acquisition of the NH code. A</nobr></div>
+<div style="position:absolute;top:5770;left:473"><nobr>detailed discussion of this issue can be found in</nobr></div>
+<div style="position:absolute;top:5787;left:473"><nobr>[Macabiau et al. 2003]. </nobr></div>
+<div style="position:absolute;top:6086;left:473"><nobr><b>Figure 9: Acquisition result, step size = 33.3 Hz</b></nobr></div>
+<div style="position:absolute;top:6131;left:473"><nobr><b>PERFORMANCE COMPARISON</b></nobr></div>
+<div style="position:absolute;top:6164;left:473"><nobr>The computation burdens of four different acquisition</nobr></div>
+<div style="position:absolute;top:6181;left:473"><nobr>methods are compared in this section. The assumptions</nobr></div>
+<div style="position:absolute;top:6198;left:473"><nobr>made are as follows</nobr></div>
+<div style="position:absolute;top:6215;left:473"><nobr>.</nobr></div>
+<div style="position:absolute;top:6228;left:499"><nobr>• Normal signal strength</nobr></div>
+<div style="position:absolute;top:6249;left:525"><nobr>C/N<font style="font-size:7px">0 </font>= 46 dB-Hz</nobr></div>
+<div style="position:absolute;top:6266;left:525"><nobr>SNR = 46 –73 (20 MHz BW) = -27 dB </nobr></div>
+</span></font>
+
+<div style="position:absolute;top:6490;left:0"><hr><table width="100%" border="0"><tbody><tr><td bgcolor="eeeeee" align="right"><font face="arial,sans-serif"><a name="6"><b>Page 6</b></a></font></td></tr></tbody></table></div><font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:7633;left:79"><nobr><i>Proceedings of ION GNSS 2004 (Session A3), Long Beach, CA, September 21-24, 2004</i></nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:15px;font-family:Times">
+<div style="position:absolute;top:7634;left:805"><nobr>6</nobr></div>
+</span></font>
+<font size="3" face="Times"><span style="font-size:12px;font-family:Times">
+<div style="position:absolute;top:6622;left:105"><nobr>• When the single trial false alarm probability Pfa</nobr></div>
+<div style="position:absolute;top:6647;left:131"><nobr>is 16%, if the required single trial detection</nobr></div>
+<div style="position:absolute;top:6664;left:131"><nobr>probability Pd is greater than 0.99, then the SNR</nobr></div>
+<div style="position:absolute;top:6684;left:131"><nobr>after correlation should be greater than 9.54 dB</nobr></div>
+<div style="position:absolute;top:6701;left:131"><nobr>[Ward, 1996]</nobr></div>
+<div style="position:absolute;top:6731;left:105"><nobr>• Q5 codes cross-correlation isolation are greater</nobr></div>
+<div style="position:absolute;top:6753;left:131"><nobr>than 27.9 dB [Tran &amp; Hegarty, 2002] </nobr></div>
+<div style="position:absolute;top:6782;left:105"><nobr>• Non-coherent integration squaring loss = 4 dB</nobr></div>
+<div style="position:absolute;top:6821;left:79"><nobr>It can be seen from Table 1 that, using Hegarty’s method,</nobr></div>
+<div style="position:absolute;top:6838;left:79"><nobr>301 different Doppler frequencies and 20 different NH</nobr></div>
+<div style="position:absolute;top:6854;left:79"><nobr>code initial points have to be searched. The coherent</nobr></div>
+<div style="position:absolute;top:6871;left:79"><nobr>integration period is 20 ms. The computation load for this</nobr></div>
+<div style="position:absolute;top:6888;left:79"><nobr>method is 120,400 times of that of the 1-ms FFT. As to</nobr></div>
+<div style="position:absolute;top:6905;left:79"><nobr>the Neumann-Hoffman removal method, only 1-ms</nobr></div>
+<div style="position:absolute;top:6921;left:79"><nobr>coherent integration has to be carried out. Thus, the</nobr></div>
+<div style="position:absolute;top:6938;left:79"><nobr>computation burden is 20 times less than that of Hegarty’s</nobr></div>
+<div style="position:absolute;top:6955;left:79"><nobr>method, namely 6,020 times of that of the 1-ms FFT. The</nobr></div>
+<div style="position:absolute;top:6972;left:79"><nobr>frequency removal method only needs to coherently</nobr></div>
+<div style="position:absolute;top:6989;left:79"><nobr>integrate 143 ms to detect the initial phase of the</nobr></div>
+<div style="position:absolute;top:7005;left:79"><nobr>incoming PRN code. The Doppler frequency and NH</nobr></div>
+<div style="position:absolute;top:7022;left:79"><nobr>code initial phase can be easily found by multiplication</nobr></div>
+<div style="position:absolute;top:7039;left:79"><nobr>and summation. Because the computation load for the</nobr></div>
+<div style="position:absolute;top:7056;left:79"><nobr>multiplication and summation process is much lower than</nobr></div>
+<div style="position:absolute;top:7072;left:79"><nobr>that of the FFT process, it is counted in this table. The</nobr></div>
+<div style="position:absolute;top:7089;left:79"><nobr>non-coherent integration method has to search 16</nobr></div>
+<div style="position:absolute;top:7106;left:79"><nobr>different Doppler frequencies, which is much less than</nobr></div>
+<div style="position:absolute;top:7123;left:79"><nobr>that of Hegarty’s method and the NHR method. The</nobr></div>
+<div style="position:absolute;top:7140;left:79"><nobr>reason is that only a 1-ms coherent integration is</nobr></div>
+<div style="position:absolute;top:7156;left:79"><nobr>implemented, which leads to a coarse frequency</nobr></div>
+<div style="position:absolute;top:7173;left:79"><nobr>resolution. The computation load of this method is 304</nobr></div>
+<div style="position:absolute;top:7190;left:79"><nobr>times of that of the 1-ms FFT.   When the signal strength</nobr></div>
+<div style="position:absolute;top:7207;left:79"><nobr>is normal or above, the proposed frequency removal</nobr></div>
+<div style="position:absolute;top:7223;left:79"><nobr>method has the lowest computation load.</nobr></div>
+<div style="position:absolute;top:7266;left:79"><nobr><b>Table 1: Comparison of the computation loads</b></nobr></div>
+<div style="position:absolute;top:7292;left:94"><nobr>Method</nobr></div>
+<div style="position:absolute;top:7292;left:173"><nobr>Hegarty</nobr></div>
+<div style="position:absolute;top:7309;left:182"><nobr>et al.</nobr></div>
+<div style="position:absolute;top:7292;left:248"><nobr>NHR</nobr></div>
+<div style="position:absolute;top:7292;left:318"><nobr>FR</nobr></div>
+<div style="position:absolute;top:7292;left:378"><nobr>Non-</nobr></div>
+<div style="position:absolute;top:7309;left:368"><nobr>coherent</nobr></div>
+<div style="position:absolute;top:7326;left:93"><nobr>Doppler</nobr></div>
+<div style="position:absolute;top:7343;left:82"><nobr>Search Step</nobr></div>
+<div style="position:absolute;top:7326;left:186"><nobr>301</nobr></div>
+<div style="position:absolute;top:7326;left:253"><nobr>301</nobr></div>
+<div style="position:absolute;top:7326;left:325"><nobr>/</nobr></div>
+<div style="position:absolute;top:7326;left:386"><nobr>16</nobr></div>
+<div style="position:absolute;top:7360;left:84"><nobr>NH Search</nobr></div>
+<div style="position:absolute;top:7377;left:104"><nobr>Step</nobr></div>
+<div style="position:absolute;top:7360;left:189"><nobr>20</nobr></div>
+<div style="position:absolute;top:7360;left:256"><nobr>20</nobr></div>
+<div style="position:absolute;top:7360;left:325"><nobr>/</nobr></div>
+<div style="position:absolute;top:7360;left:391"><nobr>/</nobr></div>
+<div style="position:absolute;top:7395;left:90"><nobr>Coherent </nobr></div>
+<div style="position:absolute;top:7411;left:85"><nobr>Integration</nobr></div>
+<div style="position:absolute;top:7428;left:103"><nobr>(ms)</nobr></div>
+<div style="position:absolute;top:7411;left:189"><nobr>20</nobr></div>
+<div style="position:absolute;top:7411;left:260"><nobr>1</nobr></div>
+<div style="position:absolute;top:7411;left:316"><nobr>143</nobr></div>
+<div style="position:absolute;top:7411;left:389"><nobr>1</nobr></div>
+<div style="position:absolute;top:7446;left:79"><nobr>Noncoherent</nobr></div>
+<div style="position:absolute;top:7463;left:85"><nobr>Integration</nobr></div>
+<div style="position:absolute;top:7479;left:103"><nobr>(ms)</nobr></div>
+<div style="position:absolute;top:7463;left:195"><nobr>/</nobr></div>
+<div style="position:absolute;top:7463;left:262"><nobr>/</nobr></div>
+<div style="position:absolute;top:7463;left:325"><nobr>/</nobr></div>
+<div style="position:absolute;top:7463;left:386"><nobr>19</nobr></div>
+<div style="position:absolute;top:7497;left:90"><nobr>Times of </nobr></div>
+<div style="position:absolute;top:7514;left:88"><nobr>1 ms FFT </nobr></div>
+<div style="position:absolute;top:7497;left:173"><nobr>120,400</nobr></div>
+<div style="position:absolute;top:7497;left:247"><nobr>6,020</nobr></div>
+<div style="position:absolute;top:7497;left:316"><nobr>143</nobr></div>
+<div style="position:absolute;top:7497;left:382"><nobr>304</nobr></div>
+<div style="position:absolute;top:6626;left:473"><nobr><b>CONCLUSIONS</b></nobr></div>
+<div style="position:absolute;top:6659;left:473"><nobr>Two new acquisition schemes for a GPS L5 software</nobr></div>
+<div style="position:absolute;top:6676;left:473"><nobr>receiver have been described. Simulation results show</nobr></div>
+<div style="position:absolute;top:6693;left:473"><nobr>that they are suitable for software signal processing under</nobr></div>
+<div style="position:absolute;top:6710;left:473"><nobr>different scenarios. When the signal level is above normal</nobr></div>
+<div style="position:absolute;top:6726;left:473"><nobr>(C/N<font style="font-size:7px">0 </font>&gt;= 46 dB-Hz), the frequency removal method can</nobr></div>
+<div style="position:absolute;top:6743;left:473"><nobr>detect the signal with the lowest computation load. When</nobr></div>
+<div style="position:absolute;top:6760;left:473"><nobr>the signal level is below normal (C/N<font style="font-size:7px">0 </font>&lt; 46 dB-Hz), the</nobr></div>
+<div style="position:absolute;top:6777;left:473"><nobr>Neumann-Hoffman removal method or the non-coherent</nobr></div>
+<div style="position:absolute;top:6794;left:473"><nobr>integration method is preferred to obtain enough</nobr></div>
+<div style="position:absolute;top:6810;left:473"><nobr>correlation gain. </nobr></div>
+<div style="position:absolute;top:6844;left:473"><nobr><b>REFERENCES</b></nobr></div>
+<div style="position:absolute;top:6877;left:473"><nobr>[1] Tsui, J. B. Y., <i><b>“Fundamentals of Global Positioning</b></i></nobr></div>
+<div style="position:absolute;top:6894;left:473"><nobr><i><b>System Receivers: A Software Approach,” </b></i>New York,</nobr></div>
+<div style="position:absolute;top:6911;left:473"><nobr>John Wiley &amp; Sons, Inc., 2000, pp. 115-120 &amp; 146-148.  </nobr></div>
+<div style="position:absolute;top:6945;left:473"><nobr>[2] Hegarty, C., M. Tran, and A. J., Van Dierendonck,</nobr></div>
+<div style="position:absolute;top:6962;left:473"><nobr><i><b>“Acquisition Algorithms for the GPS L5 Signal,”</b></i></nobr></div>
+<div style="position:absolute;top:6978;left:473"><nobr>Proceeding of ION GPS/GNSS 2003, September 2003,</nobr></div>
+<div style="position:absolute;top:6995;left:473"><nobr>Portland, OR, pp. 165-177. </nobr></div>
+<div style="position:absolute;top:7028;left:473"><nobr>[3] Lin, D. M., and J. B. Y. Tsui, <i><b>“Comparison of</b></i></nobr></div>
+<div style="position:absolute;top:7045;left:473"><nobr><i><b>Acquisition Methods for Software GPS Receiver,”</b></i></nobr></div>
+<div style="position:absolute;top:7062;left:473"><nobr>Proceedings of ION GPS 2000, Salt Lake City, UT,</nobr></div>
+<div style="position:absolute;top:7079;left:473"><nobr>September, 2000, pp. 2385-2390.</nobr></div>
+<div style="position:absolute;top:7112;left:473"><nobr>[4] Ward, P., <i><b>“Satellite Signal Acquisition and</b></i></nobr></div>
+<div style="position:absolute;top:7129;left:473"><nobr><i><b>Tracking,” </b></i>in <i>Understanding GPS Principles and</i></nobr></div>
+<div style="position:absolute;top:7146;left:473"><nobr><i>Applications, </i>Kaplan, E. D., Norwood, MA, 1996, pp.</nobr></div>
+<div style="position:absolute;top:7163;left:473"><nobr>193-198.</nobr></div>
+<div style="position:absolute;top:7196;left:473"><nobr>[5] Tran, M., and C. Hegarty, <i><b>“Recier Algorithms for the</b></i></nobr></div>
+<div style="position:absolute;top:7213;left:473"><nobr><i><b>New Civil GPS Signal,” </b></i>Proceedings of ION NTM 2002,</nobr></div>
+<div style="position:absolute;top:7230;left:473"><nobr>San Diego, CA, pp.778-789.</nobr></div>
+<div style="position:absolute;top:7263;left:473"><nobr>[6] Macabiau, C., L. Ries, F. Bastide, and J. Issler, <i><b>“GPS</b></i></nobr></div>
+<div style="position:absolute;top:7280;left:473"><nobr><i><b>L5 Receiver Implementation Issues,” </b></i>Proceeding of ION</nobr></div>
+<div style="position:absolute;top:7297;left:473"><nobr>GPS/GNSS 2003, September 2003, Portland, OR, pp.</nobr></div>
+<div style="position:absolute;top:7314;left:473"><nobr>153-164.  </nobr></div>
+</span></font>
+
+
+</div></body></html>
