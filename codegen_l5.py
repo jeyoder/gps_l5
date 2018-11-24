@@ -3,6 +3,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+np.set_printoptions(edgeitems=10)
+
+# See IS-GPS-705E, Table 3-Ia.
 CODE_ADVANCE_XBI = [
     None,   # PRN 0
     266,    # PRN 1
@@ -138,6 +141,7 @@ CODE_ADVANCE_XBQ = [
 ]
 
 # Calculate num_bits of a n-bit LFSR with given taps & initial value
+# Tap order mimics IS-GPS presentation (bit 1 is on the left, 13 on the right)
 def gen_lfsr_code(n, taps, output_tap = 13, initial = 1, num_bits = 1):
 
     # Truncate register to n bits
@@ -173,7 +177,7 @@ def gen_xbi_code(prn):
     TAPS = [1, 3, 4, 6, 7, 8, 12, 13]
 
     initial_state = 2**13-1
-    sub_code = np.roll(gen_lfsr_code(13, TAPS, 13, initial_state, 10230), CODE_ADVANCE_XBI[prn]) 
+    sub_code = np.roll(gen_lfsr_code(13, TAPS, 13, initial_state, 10230), -CODE_ADVANCE_XBI[prn]) 
     return np.append(sub_code, sub_code)[:10230]
 
 def gen_xbq_code(prn):
@@ -181,20 +185,20 @@ def gen_xbq_code(prn):
     TAPS = [1, 3, 4, 6, 7, 8, 12, 13]
 
     initial_state = 2**13-1
-    sub_code = np.roll(gen_lfsr_code(13, TAPS, 13, initial_state, 10230), CODE_ADVANCE_XBQ[prn]) 
+    sub_code = np.roll(gen_lfsr_code(13, TAPS, 13, initial_state, 10230), -CODE_ADVANCE_XBQ[prn]) 
     return np.append(sub_code, sub_code)[:10230]
 
 def gen_q5_code(prn):
     xa = gen_xa_code()
     xbq = gen_xbq_code(prn)
 
-    return xa ^ xbq
+    return (xa ^ xbq) * 2 - 1
 
 def gen_i5_code(prn):
     xa = gen_xa_code()
     xbi = gen_xbi_code(prn)
 
-    return xa ^ xbi
+    return (xa ^ xbi) * 2 - 1
 
 
 print(gen_q5_code(1))

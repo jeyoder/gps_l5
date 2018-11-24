@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import numpy
+import numpy as np
 import scipy
 
 # PRN #s 1-37
@@ -48,37 +48,41 @@ PRN_TAPS = [
 
 CODE = []
 
-# Calculate entire period of a 10-bit LFSR with given taps & initial value
-def do_shift_reg(taps, output_tap = 10, initial = 1023):
+# Calculate num_bits of a n-bit LFSR with given taps & initial value
+# Tap order mimics IS-GPS presentation (bit 1 is on the left, 13 on the right)
+def gen_lfsr_code(n, taps, output_tap = 13, initial = 1, num_bits = 1):
 
-    # Truncate register to 1023 bits
-    reg = initial & 1023
+    # Truncate register to n bits
+    reg = initial & (2**n-1)
 
     # Output - array of 1, 0
     out = []
 
-    for i in range(1023):
-        out.append((reg >> (10 - output_tap)) & 1)
+    for i in range(num_bits):
+        out.append((reg >> (n - output_tap)) & 1)
         feedback = 0
 
         # Apply taps
         for tap in taps:
-            feedback ^= (reg >> (10 - tap)) & 1 
+            feedback ^= (reg >> (n - tap)) & 1 
 
-        reg = (reg >> 1) | (feedback << 9)
+        reg = (reg >> 1) | (feedback << (n-1))
 
-    return(numpy.array(out))
-
+    return(np.array(out))
 
 # Generate 1023-bit PRN code for a given PRN#
 def get_code(prn):
     
-    G21 = do_shift_reg([10, 9, 8, 6, 3, 2], output_tap=PRN_TAPS[prn][0])
-    G22 = do_shift_reg([10, 9, 8, 6, 3, 2], output_tap=PRN_TAPS[prn][1])
-    G1  = do_shift_reg([10, 3])
+#    G21 = do_shift_reg([10, 9, 8, 6, 3, 2], output_tap=PRN_TAPS[prn][0])
+#    G22 = do_shift_reg([10, 9, 8, 6, 3, 2], output_tap=PRN_TAPS[prn][1])
+#    G1  = do_shift_reg([10, 3])
 
-    Gi = numpy.bitwise_xor(G21, G22)
-    out = numpy.bitwise_xor(G1, Gi)
+    G21 = gen_lfsr_code(10, [10, 9, 8, 6, 3, 2], PRN_TAPS[prn][0], initial=1023, num_bits=1023) 
+    G22 = gen_lfsr_code(10, [10, 9, 8, 6, 3, 2], PRN_TAPS[prn][1], initial=1023, num_bits=1023)
+    G1  = gen_lfsr_code(10, [10, 3],             10,               initial=1023, num_bits=1023)
+
+    Gi = np.bitwise_xor(G21, G22)
+    out = np.bitwise_xor(G1, Gi)
 
     return out
 
@@ -106,7 +110,7 @@ if __name__ == '__main__':
         code = CODE[prn]
 
         first_ten = code[:10]
-        as_bytes = numpy.packbits(first_ten)
+        as_bytes = np.packbits(first_ten)
         packed = ((as_bytes[0] << 8) | as_bytes[1]) >> 6
 
         print('{:2d}\t{:o}'.format(prn, packed))

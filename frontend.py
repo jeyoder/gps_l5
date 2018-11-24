@@ -1,8 +1,6 @@
 import numpy
 import math
 
-print('filer loader')
-
 class FrontEnd():
     def __init__(self, filename):
         print('Default Frontend __init__')
@@ -12,6 +10,14 @@ class FrontEnd():
 
     def get_chunk(self, length):
         print('Default Frontend load()')
+
+    def get_chunks(self, num):
+        data = self.get_chunk(-1)
+        for i in range(num-1):
+            new_chunk = self.get_chunk(-1)
+            data = numpy.concatenate((data, new_chunk))
+
+        return data
 
     def get_if(self):
         return 0
@@ -116,8 +122,8 @@ class Bavaro(FrontEnd):
 class NTLABSamples(FrontEnd):
 
     F_SAMP = 53e6
-    F_L1_IF = 13.55e6
-    F_L5_IF = 14.58e6
+    F_L5_IF = 13.55e6
+    F_L1_IF = 14.58e6
     NUM_STREAMS = 4
 
     SAMPLES_PER_CHUNK = 1*int(F_SAMP / 1000)
@@ -137,6 +143,7 @@ class NTLABSamples(FrontEnd):
 
     def get_chunk(self, length):
 #        print('[frontend]: reading ~{} ms'.format(length*1000 / self.F_SAMP))
+
         samples_read = 0
 
         # Slurp up all the data in the next chunk

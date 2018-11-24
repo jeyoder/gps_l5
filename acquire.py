@@ -2,31 +2,45 @@
 import math
 import numpy
 import scipy
+import scipy.fftpack
+import scipy.signal
 
 import matplotlib.pyplot as plt
+import matplotlib
 
 import codegen_gpsl1ca
+import codegen_l5
 import frontend
+import correlate
 
-numpy.set_printoptions(edgeitems=5000)
+numpy.set_printoptions(edgeitems=10)
+matplotlib.style.use('classic')
 
-CHIP_RATE = 1023000 # Chips/s
-CODE_LENGTH = 1023
-CODE_CHIP_BIN = 0.5
+L5_MODE = True
+I5_CODE = False
+PLOT = True
+
+if  L5_MODE:
+    CHIP_RATE = 10230000 # 10.23 MC/s
+    CODE_LENGTH = 10230
+else:
+    CHIP_RATE = 1023000 # Chips/s
+    CODE_LENGTH = 1023
 
 DOPP_MIN = -5000
-DOPP_MAX =  5000
+DOPP_MAX = 5000
 DOPP_BIN_WIDTH = 500
 
-NUM_NONCOHERENT_CHUNKS = 1 
+NUM_NONCOHERENT_CHUNKS = 100 
+
 
 #TODO: mathematical basis for this
 # Also this seems to be dependent on noncoherent chunk count...
 # and it shouldnt be (??)
-ACQUISITION_MIN_RATIO = 4
+ACQUISITION_MIN_RATIO = 7
 
 
-def acquire(prn, front):
+def acquire(prn, front, dopp_min=DOPP_MIN, dopp_max=DOPP_MAX):
 
     front.SAMPLES_PER_SUPERCHUNK = NUM_NONCOHERENT_CHUNKS * front.SAMPLES_PER_CHUNK
 
@@ -39,27 +53,33 @@ def acquire(prn, front):
         t[i] = i / front.F_SAMP
 
     # "upsample" the code bits to a buffer the same length as the sample buffer
-    code_bits = codegen_gpsl1ca.CODE[prn] # need to upsample
+    if L5_MODE:
+        if I5_CODE:
+            code_bits = codegen_l5.gen_i5_code(prn)
+        else:
+            code_bits = codegen_l5.gen_q5_code(prn)
+    else:
+        code_bits = codegen_gpsl1ca.CODE[prn] # need to upsample
 
     delayed_codes = []
 
-    i = numpy.arange(front.SAMPLES_PER_SUPERCHUNK)
+    i = numpy.arange(front.SAMPLES_PER_CHUNK)
     chip_num = (i * CHIP_RATE / front.F_SAMP).astype(numpy.uint32) % CODE_LENGTH # floor, not round, to simulate "rect FIR filter"??
     code = code_bits[chip_num] * 2 - 2
 
-    # NONCOHERENT ACQUISITION... 1ms chunks
-    highscore = 0
-    highscore_delay = None
-    highscore_doppler = None
-    noise_avg = 0
+    best_ratio = 0
+    best_doppler = 0
+    success = False
 
-
-    for doppler in numpy.arange(DOPP_MIN, DOPP_MAX, DOPP_BIN_WIDTH):
+    for doppler in numpy.arange(dopp_min, dopp_max, DOPP_BIN_WIDTH):
         
         print ('\tDoppler: {} Hz'.format(doppler))
         
         # Genrate carrier 
-        f_carrier = front.F_L1_IF + doppler
+        if L5_MODE:
+            f_carrier = front.F_L5_IF + doppler
+        else:
+            f_carrier = front.F_L1_IF + doppler
         carrier_i = numpy.cos(2 * math.pi * f_carrier * t)
         carrier_q = numpy.sin(2 * math.pi * f_carrier * t)
 
@@ -67,66 +87,76 @@ def acquire(prn, front):
         carrier_mixed_i = carrier_i * buff
         carrier_mixed_q = carrier_q * buff
 
-        for chip_delay in numpy.arange(0, 1023, 0.5):
+        (corr_result, corr_delays) = correlate.fft_correlate(carrier_mixed_i, carrier_mixed_q, code,
+                chip_rate=CHIP_RATE, f_samp=front.F_SAMP, 
+                num_coherent=1,
+                num_noncoherent=NUM_NONCOHERENT_CHUNKS,
+                chip_spacing=0.5)
 
-            # Circular shift our local code copy by chip_delay chips
-            sample_delay = int(round(chip_delay * (front.F_SAMP / CHIP_RATE)))
-            delayed_code = numpy.roll(code, sample_delay) #NOTE: assumes the chunk length is a multiple of the code length, otherwise we can't just circularly roll a superchunk
+        noise_avg = numpy.average(corr_result)
+        noise_sigma = numpy.sqrt(numpy.average(numpy.square(corr_result - noise_avg)))
+        peak = numpy.max(corr_result)
+        ratio = (peak-noise_avg) / noise_sigma
 
-            peak = 0
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best_doppler = doppler
 
-            # Perform coherent subaccumulations 
-            for i in range(NUM_NONCOHERENT_CHUNKS):
+#        print('Noise sigma: {}'.format(noise_sigma))
 
-                chunk_idx_min = i*front.SAMPLES_PER_CHUNK
-                chunk_idx_max = (i+1)*front.SAMPLES_PER_CHUNK
-                
-                chunk_carrier_mixed_i = carrier_mixed_i[chunk_idx_min:chunk_idx_max]
-                chunk_carrier_mixed_q = carrier_mixed_i[chunk_idx_min:chunk_idx_max]
-                chunk_code = delayed_code[chunk_idx_min:chunk_idx_max]
+        if (ratio > ACQUISITION_MIN_RATIO):
+            # Acquisition successful!
+            success = True
+            print('************GOT EM COACH**************')
+            print('Peak: {} sigma'.format(ratio))
 
-                # Convolutinate (I&Q)
-                sum_i = numpy.dot(chunk_carrier_mixed_i, chunk_code)
-                sum_q = numpy.dot(chunk_carrier_mixed_q, chunk_code)
+            if PLOT:
+                plt.figure()
+                plt.plot(corr_delays, abs(corr_result), 'r-')
+                if L5_MODE:
+                    if I5_CODE:
+                        sig_name = 'L5 I'
+                    else:
+                        sig_name = 'L5 Q'
+                else:
+                    sig_name = 'L1 C/A'
+                plt.title('PRN {}, {}, f_doppler={}, {}ms accum'.format(prn, sig_name, doppler, NUM_NONCOHERENT_CHUNKS))
+                plt.show()
 
-                # Normalize sums... divide by the number of samples in the chunk
-                sum_i /= chunk_code.shape[0] 
-                sum_q /= chunk_code.shape[0] 
-
-                subpeak = math.sqrt(sum_i*sum_i + sum_q*sum_q) / NUM_NONCOHERENT_CHUNKS
-                peak += subpeak
-            
-            # look at result of subaccums
-            if peak > highscore:
-                print('\t\tNew highscore: {} Delay: {}'.format(peak, chip_delay))
-                highscore = peak
-                highscore_delay = chip_delay
-                highscore_doppler = doppler
-            
-            noise_avg += (peak / (1023*2 * (DOPP_MAX-DOPP_MIN)/DOPP_BIN_WIDTH))
-
-   # print ('avg sig power: {}'.format(noise_avg))
-
-    print('\n\tBest peak (ratio: {:0.3f}) -> Delay: {} chips, Doppler {} Hz'.format(highscore / noise_avg, highscore_delay, highscore_doppler))
 
     return {
-        'success': (highscore/noise_avg) > ACQUISITION_MIN_RATIO,
-        'prn': prn,
-        'delay' : highscore_delay,
-        'doppler' : highscore_doppler
+        'ratio':  best_ratio,
+        'doppler': best_doppler,
+        'success': success
     }
-
 if __name__ == '__main__':
-    stream = 1 #L1_PRI
+
+    # Generate test periodogram for comparison with MATLAB code
+    if L5_MODE:
+        stream = 3
+    else:
+        stream = 1 #L1_PRI
+#    front = frontend.NTLABSamples('rawintegersamples.bin', stream)
+#    nfft = 2**13
+#    data = front.get_chunks(500)
+#
+#    # mimic methods of matlab code
+#    print(len(data))
+#    [spec_f, spec] = scipy.signal.welch(data, front.F_SAMP, nperseg=nfft)
+#
+#    plt.figure()
+#    plt.plot(spec_f, 10*numpy.log10(numpy.abs(spec)), 'r.')
+#    plt.title('Welch PSD estimate, F_L1, stream 1')
+#    plt.show()
+
     front = frontend.NTLABSamples('rawintegersamples.bin', stream)
+    front.get_chunk(int(689.6 * front.SAMPLES_PER_CHUNK / 1000))
+#    front = frontend.Bavaro('/home/james/rnlab/gnss_work/gnss_receiver/bavaro.bin')
     results = []
 
-    prn_to_try = range(1,37)
+#    prn_to_try = range(1,37)
+    prn_to_try = [10] #, 32]
 
     for prn in prn_to_try:
         results.append(acquire(prn, front))
-
-    for result in results:
-        if result['success']:
-            print('Acquired PRN{:2d}: Delay: \t{} chips, Doppler \t{} Hz'.format(result['prn'], result['delay'], result['doppler']))
 
